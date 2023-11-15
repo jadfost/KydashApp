@@ -4,15 +4,15 @@ from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
-# Directorio que contiene los archivos CSV
-DIRS_DIR = 'Datos/DIRS/'
-
-# Función para cargar datos desde archivos CSV
 def cargar_datos(tabla):
-    archivo_csv = os.path.join(DIRS_DIR, f'{tabla}.csv')
-    with open(archivo_csv, 'r') as file:
+    archivo_csv = f'Datos/DIRS/{tabla}.csv'
+    data = []
+
+    with open(archivo_csv, 'r', newline='', encoding='utf-8') as file:
         reader = csv.DictReader(file)
-        data = [row for row in reader]
+        for row in reader:
+            data.append(row)
+
     return data
 
 # Ruta para manejar la solicitud de actualización del dropdown
