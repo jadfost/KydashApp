@@ -5,7 +5,7 @@ from flask import Flask, render_template, jsonify, request
 app = Flask(__name__)
 
 def cargar_datos(tabla):
-    archivo_csv = f'Datos/DIRS/{tabla}.csv'
+    archivo_csv = f'api/Datos/DIRS/{tabla}.csv'
     data = []
 
     with open(archivo_csv, 'r', newline='', encoding='utf-8') as file:
