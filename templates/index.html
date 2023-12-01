@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+</head>
+
+<body>
+  <form id="upload-form" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".xlsx">
+    <button type="submit">Subir archivo</button>
+  </form>
+  <button id="ver-datos">Ver datos</button>
+  <div id="datos"></div>
+  <table id="tabla-datos" class="display">
+    <thead>
+      <!-- Las cabeceras de la tabla se llenarán dinámicamente con JavaScript -->
+    </thead>
+    <tbody>
+      <!-- Los datos de la tabla se llenarán dinámicamente con JavaScript -->
+    </tbody>
+  </table>
+  <script>
+    $('#upload-form').on('submit', function (e) {
+      e.preventDefault();
+      var formData = new FormData(this);
+      $.ajax({
+        url: '/upload_file',
+        type: 'POST',
+        data: formData,
+        success: function (data) {
+          alert(data.success);
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+      });
+    });
+
+    $('#ver-datos').on('click', function () {
+      $.ajax({
+        url: '/ver_datos',
+        type: 'GET',
+        success: function (data) {
+          // Convierte los datos a formato JSON
+          var datos = JSON.parse(data);
+          // Obtiene las cabeceras de la tabla
+          var cabeceras = Object.keys(datos[0]);
+          // Crea las cabeceras de la tabla
+          var thead = $('#tabla-datos thead');
+          thead.empty();
+          var fila = $('<tr>');
+          cabeceras.forEach(function (cabecera) {
+            fila.append('<th>' + cabecera + '</th>');
+          });
+          thead.append(fila);
+          // Crea los datos de la tabla
+          var tbody = $('#tabla-datos tbody');
+          tbody.empty();
+          datos.forEach(function (filaDatos) {
+            var fila = $('<tr>');
+            cabeceras.forEach(function (cabecera) {
+              fila.append('<td>' + filaDatos[cabecera] + '</td>');
+            });
+            tbody.append(fila);
+          });
+          // Inicializa la tabla con DataTables
+          $('#tabla-datos').DataTable();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
