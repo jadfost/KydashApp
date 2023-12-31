@@ -2,18 +2,23 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Archivos</title>
+    <!-- Vincula tu archivo CSS -->
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
     <h1>Cargar Archivos Excel</h1>
     <form action="/procesar_archivos" method="post" enctype="multipart/form-data">
-        <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
-        <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx">
-        <br>
-        <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
-        <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx">
-        <br>
-        <input type="submit" value="Procesar Archivos">
+        <div class="flex flex-col items-center justify-center">
+            <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
+            <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx">
+        
+            <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
+            <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx">
+        
+            <input type="submit" value="Procesar Archivos" class="mt-4">
+        </div>
     </form>
 </body>
 </html>
