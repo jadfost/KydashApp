@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cargar Archivos</title>
+</head>
+<body>
+    <h1>Cargar Archivos Excel</h1>
+    <form action="/procesar_archivos" method="post" enctype="multipart/form-data">
+        <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
+        <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx">
+        <br>
+        <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
+        <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx">
+        <br>
+        <input type="submit" value="Procesar Archivos">
+    </form>
+</body>
+</html>
