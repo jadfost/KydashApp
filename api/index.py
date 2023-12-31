@@ -1,15 +1,15 @@
 from flask import Flask, render_template, request, send_file
 import pandas as pd
 from openpyxl import load_workbook
-from openpyxl.styles import PatternFill
+from openpyxl.utils.dataframe import dataframe_to_rows
 from io import BytesIO
 
 app = Flask(__name__)
 
 def comparar_archivos(archivo_A, archivo_B):
     datos_A = pd.read_excel(archivo_A)
-    datos_B = pd.read_excel(archivo_B, sheet_name='Datos_B')  # Asegúrate de leer la hoja correcta
-    
+    datos_B = pd.read_excel(archivo_B, sheet_name='Datos_B')
+
     # Guardar las edades actuales en las columnas 'V - Edad' y 'V - Pago'
     datos_B['V - Edad'] = datos_B['Edad']
     datos_B['V - Pago'] = datos_B['Pago']
@@ -49,9 +49,27 @@ def procesar_archivos():
     
     datos_modificados = comparar_archivos(archivo_A, archivo_B)
 
+    # Leer el archivo existente para conservar las fórmulas
+    wb = load_workbook(archivo_B)
+    ws = wb['Datos_B']
+
+    # Obtener las fórmulas en la columna '% Pago'
+    formulas = {cell.coordinate: cell for cell in ws['K'][1:] if cell.data_type == 'f'}
+
+    # Convertir los datos modificados a un dataframe de Pandas
+    df = pd.DataFrame(datos_modificados)
+
+    # Iterar sobre el DataFrame y escribir en el archivo respetando las fórmulas
+    for r_idx, row in enumerate(dataframe_to_rows(df, index=False, header=True), 1):
+        for c_idx, value in enumerate(row, 1):
+            cell = ws.cell(row=r_idx, column=c_idx)
+            if cell.coordinate in formulas:
+                ws[cell.coordinate] = formulas[cell.coordinate].value
+            else:
+                cell.value = value
+
     output = BytesIO()
-    with pd.ExcelWriter(output, engine='openpyxl') as writer:
-        datos_modificados.to_excel(writer, sheet_name='Datos_B', index=False)
+    wb.save(output)
     output.seek(0)
     
     return send_file(output, as_attachment=True, download_name='Libro2_modificado.xlsx', mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
