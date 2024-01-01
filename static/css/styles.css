@@ -110,6 +110,13 @@ body.active
     transition-delay: 0.25s;
 }
 
+.formBx h3 {
+  text-align: center; /* Centra el texto */
+  font-size: 12px; /* Establece el tamaño de la fuente */
+  color: #2c2c2c; /* Color del texto */
+  margin-top: 10px; /* Espacio superior */
+}
+
 .formBx.active .signinForm
 {
     left: -100%;
