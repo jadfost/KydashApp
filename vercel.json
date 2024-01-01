@@ -1,6 +1,9 @@
 {
-  "rewrites": [
-    {"source": "^/db/(.*)", "destination": "/api/db/$1" },
-    { "source": "/(.*)", "destination": "/api/index" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
   ]
 }
