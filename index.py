@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from novedad import novedad_bp
+from routes import novedad_bp
 
 import os
 from pymongo import MongoClient
