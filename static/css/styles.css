@@ -8,6 +8,32 @@
     font-family: 'Poppins',sans-serif;
 }
 
+/* Estilos para los mensajes flash */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.alert-error {
+  background-color: #f44336;
+  color: white;
+}
+
+.alert-success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.alert {
+  position: absolute;
+  top: 0; /* Modificar la posición superior para alinear con el margen superior del contenedor */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 500px;
+}
+
 body
 {
     display: flex;

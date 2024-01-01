@@ -1,51 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{{ url_for('static', filename = 'css/styles.css') }}" rel="stylesheet" />
     <title>Kydash Co</title>
     <!-- Agrega el favicon -->
     <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
     <link rel="icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
-</head>
-<body>
+  </head>
+  <body>
+    <!-- Agrega esta sección para mostrar mensajes -->
+    {% with messages = get_flashed_messages(with_categories = true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
     <div class="container">
-        <div class="blueBg">
-            <div class="box signin">
-                <h2>Ya tienes cuenta?</h2>
-                <button class="signinBtn"> Iniciar Sesion</button>
-            </div>
-            <div class="box signup">
-                <h2>No tienes cuenta?</h2>
-                <button class="signupBtn">Crear cuenta</button>
-            </div>
+      <div class="blueBg">
+        <div class="box signin">
+          <h2>Ya tienes cuenta?</h2>
+          <button class="signinBtn">Iniciar Sesion</button>
         </div>
-        <div class="formBx">
-            <div class="form signinForm">
-                <form method="post" action="/login">
-                    <img src="{{ url_for('static', filename='images/image.png') }}" alt="Descripción de la imagen">
-                    <h3>Iniciar Sesion</h3>
-                    <input type="text" name="username" placeholder="Usuario">
-                    <input type="password" name="password" placeholder="Contraseña">
-                    <input type="submit" value="Acceder">
-                </form>
-                <h3>© JadFost</h3>
-            </div>
+        <div class="box signup">
+          <h2>No tienes cuenta?</h2>
+          <button class="signupBtn">Crear cuenta</button>
+        </div>
+      </div>
+      <div class="formBx">
+        <div class="form signinForm">
+          <form method="post" action="/login">
+            <img src="{{ url_for('static', filename = 'images/image.png') }}" alt="Descripción de la imagen" />
+            <h3>Iniciar Sesion</h3>
+            <input type="text" name="username" placeholder="Usuario" />
+            <input type="password" name="password" placeholder="Contraseña" />
+            <input type="submit" value="Acceder" />
+          </form>
+          <h3>© JadFost</h3>
+        </div>
 
-            <div class="form signupForm">
-                <form>
-                    <img src="{{ url_for('static', filename='images/image.png') }}" alt="Descripción de la imagen">
-                    <h3>Registrarse</h3>
-                    <input type="text" placeholder="Usuario">
-                    <input type="password" placeholder="Contraseña">
-                    <input type="submit" value="Crear">
-                </form>
-                <h3>© JadFost</h3>
-            </div>
+        <div class="form signupForm">
+          <form method="post" action="/register">
+            <img src="{{ url_for('static', filename = 'images/image.png') }}" alt="Descripción de la imagen" />
+            <h3>Registrarse</h3>
+            <input type="text" name="username" placeholder="Usuario" />
+            <input type="password" name="password" placeholder="Contraseña" />
+            <input type="submit" value="Crear" />
+          </form>
+          <h3>© JadFost</h3>
         </div>
+      </div>
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+    <script src="{{ url_for('static', filename = 'js/script.js') }}"></script>
+  </body>
 </html>

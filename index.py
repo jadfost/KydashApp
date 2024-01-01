@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 from routes import novedad_bp
 
 app = Flask(__name__)
@@ -19,19 +19,15 @@ def login():
             session['username'] = username
             return redirect(url_for('dashboard'))
         else:
-            return "Credenciales inválidas. Inténtalo de nuevo."
+            flash("Credenciales inválidas. Inténtalo de nuevo.", 'error')
     return render_template('login.html')
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['POST'])
 def register():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if create_user(username, password):
-            return redirect(url_for('login'))
-        else:
-            return "El usuario ya existe."
-    return render_template('register.html')
+    # Simulación de lógica para verificar los permisos para crear una cuenta
+    # Si no tiene permisos, muestra un mensaje de error
+    flash('No tiene permisos para hacer esto', 'error')
+    return render_template('login.html')
 
 @app.route('/dashboard')
 def dashboard():
