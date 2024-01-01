@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from db import get_user, create_user
+from db.db import get_user, create_user
 from novedad import novedad_bp
 
 app = Flask(__name__)

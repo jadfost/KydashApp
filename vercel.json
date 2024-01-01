@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/novedad/(.*)", "destination": "/api/novedad" },
+    { "source": "/db/(.*)", "destination": "/api/db/db" },
     { "source": "/(.*)", "destination": "/api/index" }
   ]
 }
