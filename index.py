@@ -8,7 +8,7 @@ app.secret_key = 'your_secret_key'  # Cambia esto por una clave segura
 def index():
     if 'username' in session:
         return redirect(url_for('dashboard'))
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

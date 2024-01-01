@@ -1,14 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Iniciar sesión</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename = 'css/styles.css') }}" rel="stylesheet" />
+    <title>Kydash</title>
+    <!-- Agrega el favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
 </head>
 <body>
-    <h2>Iniciar sesión</h2>
-    <form method="post" action="/login">
-        <input type="text" name="username" placeholder="Nombre de usuario"><br>
-        <input type="password" name="password" placeholder="Contraseña"><br>
-        <input type="submit" value="Iniciar sesión">
-    </form>
+    <div class="container">
+        <div class="blueBg">
+            <div class="box signin">
+                <h2>Ya tienes cuenta?</h2>
+                <button class="signinBtn"> Iniciar Sesion</button>
+            </div>
+            <div class="box signup">
+                <h2>No tienes cuenta?</h2>
+                <button class="signupBtn">Crear cuenta</button>
+            </div>
+        </div>
+        <div class="formBx">
+            <div class="form signinForm">
+                <form method="post" action="/login">
+                    <h3>Iniciar Sesion</h3>
+                    <input type="text" name="username" placeholder="Usuario">
+                    <input type="password" name="password" placeholder="Contraseña">
+                    <input type="submit" value="Acceder">
+                    <a href="#" class="forgot">Olvide mi contraseña</a>
+                </form>
+            </div>
+
+            <div class="form signupForm">
+                <form>
+                    <h3>Registrarse</h3>
+                    <input type="text" placeholder="Usuario">
+                    <input type="password" placeholder="Contraseña">
+                    <input type="password" placeholder="Confirmar Contraseña">
+                    <input type="submit" value="Crear">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
