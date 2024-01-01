@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ url_for('static', filename = 'css/styles.css') }}" rel="stylesheet" />
-    <title>Kydash</title>
+    <title>Kydash Co</title>
     <!-- Agrega el favicon -->
     <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
     <link rel="icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
@@ -25,6 +25,7 @@
         <div class="formBx">
             <div class="form signinForm">
                 <form method="post" action="/login">
+                    <img src="{{ url_for('static', filename='images/image.png') }}" alt="Descripción de la imagen">
                     <h3>Iniciar Sesion</h3>
                     <input type="text" name="username" placeholder="Usuario">
                     <input type="password" name="password" placeholder="Contraseña">
@@ -35,6 +36,7 @@
 
             <div class="form signupForm">
                 <form>
+                    <img src="{{ url_for('static', filename='images/image.png') }}" alt="Descripción de la imagen">
                     <h3>Registrarse</h3>
                     <input type="text" placeholder="Usuario">
                     <input type="password" placeholder="Contraseña">

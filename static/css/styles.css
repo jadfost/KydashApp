@@ -20,7 +20,7 @@ body
 
 body.active
 {
-    background: #f43648;
+    background: #feaf0a;
 }
 
 .container
@@ -164,7 +164,7 @@ body.active
 
 .formBx.active .signupForm input[type="submit"]
 {
-    background: #f43648;
+    background: #feaf0a;
 }
 
 .formBx .form form .forgot
@@ -199,10 +199,11 @@ body.active
 
     .blueBg .box
     {
-        position: absolute;
+        position: relative;
         width: 100%;
         height: 150px;
         bottom: 0;
+        overflow: hidden;
     }
     
     .box.signin
