@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kydash Co</title>
     <!-- Vincula tu archivo CSS -->
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename = 'css/nav.css') }}" rel="stylesheet" />
     <!-- Agrega el favicon -->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='js/merapp.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ url_for('static', filename='js/merapp.ico') }}" type="image/x-icon">
-</head>
-<body>
-    <h1>Cargar Archivos Excel</h1>
-    <form action="/procesar_archivos" method="post" enctype="multipart/form-data">
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'js/merapp.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ url_for('static', filename = 'js/merapp.ico') }}" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <a href="{{ url_for('dashboard') }}">Ir al Dashboard</a>
+      <a href="{{ url_for('calculadora') }}">Calculadora</a>
+      <a href="{{ url_for('novedad_bp.novedades') }}">Novedades</a>
+      <!-- Puedes agregar más enlaces para el menú -->
+    </div>
+    <div class="content">
+      <h1>Cargar Archivos Excel</h1>
+      <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
         <div class="flex flex-col items-center justify-center">
-            <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
-            <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx">
-        
-            <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
-            <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx">
-        
-            <input type="submit" value="Procesar Archivos" class="mt-4">
+          <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
+          <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" />
+
+          <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
+          <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" />
+
+          <input type="submit" value="Procesar Archivos" class="mt-4" />
         </div>
-    </form>
-</body>
+        {% if resultado is defined %}
+          <h3>Resultado de la suma:</h3>
+          <p>El resultado es: {{ resultado }}</p>
+        {% endif %}
+      </form>
+    </div>
+  </body>
 </html>

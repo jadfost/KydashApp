@@ -73,6 +73,3 @@ def procesar_archivos():
     output.seek(0)
     
     return send_file(output, as_attachment=True, download_name='Libro2_modificado.xlsx', mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-
-if __name__ == '__main__':
-    app.run(debug=True)
