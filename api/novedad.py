@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template, request, send_file
+from flask import Flask, Blueprint, render_template, request, send_file
 import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 from io import BytesIO
 
 novedad_bp = Blueprint('novedad_bp', __name__)
+app = Flask(__name__)  # Definir la instancia de Flask
 
 def comparar_archivos(archivo_A, archivo_B):
     datos_A = pd.read_excel(archivo_A)
@@ -75,4 +76,5 @@ def procesar_archivos():
     return send_file(output, as_attachment=True, download_name='Libro2_modificado.xlsx', mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
 if __name__ == '__main__':
+    app.register_blueprint(novedad_bp, url_prefix='/novedad')
     app.run(debug=True)
