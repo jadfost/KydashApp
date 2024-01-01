@@ -1,78 +1,63 @@
-from flask import Flask, render_template, request, send_file
-import pandas as pd
-from openpyxl import load_workbook
-from openpyxl.utils.dataframe import dataframe_to_rows
-from io import BytesIO
+from flask import Flask, render_template, request, redirect, url_for, session
+from utils.db import get_user, create_user
+from novedad import novedad_bp
 
 app = Flask(__name__)
-
-def comparar_archivos(archivo_A, archivo_B):
-    datos_A = pd.read_excel(archivo_A)
-    datos_B = pd.read_excel(archivo_B, sheet_name='Datos_B')
-
-    # Guardar las edades actuales en las columnas 'V - Edad' y 'V - Pago'
-    datos_B['V - Edad'] = datos_B['Edad']
-    datos_B['V - Pago'] = datos_B['Pago']
-
-    for idx, fila_A in datos_A.iterrows():
-        id_persona = fila_A['ID']
-        edad_A = fila_A['Edad']
-        pago_A = fila_A['Pago']
-
-        if id_persona in datos_B['ID'].values:
-            edad_B = datos_B.loc[datos_B['ID'] == id_persona, 'Edad'].values[0]
-            pago_B = datos_B.loc[datos_B['ID'] == id_persona, 'Pago'].values[0]
-
-            if edad_A != edad_B:
-                datos_B.loc[datos_B['ID'] == id_persona, 'Edad'] = edad_A
-            if pago_A != pago_B:
-                datos_B.loc[datos_B['ID'] == id_persona, 'Pago'] = pago_A
-        else:
-            datos_B = pd.concat([datos_B, fila_A.to_frame().T], ignore_index=True)
-
-    datos_B['R - Edad'] = 'Igual'
-    datos_B['R - Pago'] = 'Igual'
-
-    datos_B.loc[datos_B['V - Edad'] != datos_B['Edad'], 'R - Edad'] = 'Hubo cambio'
-    datos_B.loc[datos_B['V - Pago'] != datos_B['Pago'], 'R - Pago'] = 'Hubo cambio'
-
-    return datos_B
+app.secret_key = 'your_secret_key'  # Cambia esto por una clave segura
 
 @app.route('/')
 def index():
-    return render_template('cargar_archivos.html')
+    if 'username' in session:
+        return redirect(url_for('dashboard'))
+    return render_template('index.html')
 
-@app.route('/procesar_archivos', methods=['POST'])
-def procesar_archivos():
-    archivo_A = request.files['archivo_A']
-    archivo_B = request.files['archivo_B']
-    
-    datos_modificados = comparar_archivos(archivo_A, archivo_B)
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = get_user(username)
+        if user and user['password'] == password:
+            session['username'] = username
+            return redirect(url_for('dashboard'))
+        else:
+            return "Credenciales inválidas. Inténtalo de nuevo."
+    return render_template('login.html')
 
-    # Leer el archivo existente para conservar las fórmulas
-    wb = load_workbook(archivo_B)
-    ws = wb['Datos_B']
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if create_user(username, password):
+            return redirect(url_for('login'))
+        else:
+            return "El usuario ya existe."
+    return render_template('register.html')
 
-    # Obtener las fórmulas en la columna '% Pago'
-    formulas = {cell.coordinate: cell for cell in ws['K'][1:] if cell.data_type == 'f'}
+@app.route('/dashboard')
+def dashboard():
+    if 'username' in session:
+        return render_template('dashboard.html')
+    return redirect(url_for('login'))
 
-    # Convertir los datos modificados a un dataframe de Pandas
-    df = pd.DataFrame(datos_modificados)
 
-    # Iterar sobre el DataFrame y escribir en el archivo respetando las fórmulas
-    for r_idx, row in enumerate(dataframe_to_rows(df, index=False, header=True), 1):
-        for c_idx, value in enumerate(row, 1):
-            cell = ws.cell(row=r_idx, column=c_idx)
-            if cell.coordinate in formulas:
-                ws[cell.coordinate] = formulas[cell.coordinate].value
-            else:
-                cell.value = value
+@app.route('/calculadora', methods=['GET', 'POST'])
+def calculadora():
+    if request.method == 'POST':
+        num1 = float(request.form['num1'])
+        num2 = float(request.form['num2'])
+        resultado = num1 + num2
+        return render_template('calculadora.html', resultado=resultado)
+    return render_template('calculadora.html')
 
-    output = BytesIO()
-    wb.save(output)
-    output.seek(0)
-    
-    return send_file(output, as_attachment=True, download_name='Libro2_modificado.xlsx', mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
+# Registra el blueprint en tu aplicación
+app.register_blueprint(novedad_bp, url_prefix='/novedad')
 
 if __name__ == '__main__':
     app.run(debug=True)

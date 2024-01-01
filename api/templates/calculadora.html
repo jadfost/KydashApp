@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora</title>
+    <!-- Vincula tu archivo CSS -->
+    <link href="{{ url_for('static', filename = 'css/nav.css') }}" rel="stylesheet" />
+    <!-- Agrega el favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'js/merapp.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ url_for('static', filename = 'js/merapp.ico') }}" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <a href="{{ url_for('calculadora') }}">Calculadora</a>
+      <a href="{{ url_for('novedad_bp.novedades') }}">Novedades</a>
+      <!-- Puedes agregar más enlaces para el menú -->
+    </div>
+    <div class="content">
+      <form action="/calculadora" method="post">
+        <label for="num1">Número 1:</label>
+        <input type="number" name="num1" id="num1" />
+        <label for="num2">Número 2:</label>
+        <input type="number" name="num2" id="num2" />
+        <input type="submit" value="Sumar" />
+
+        {% if resultado is defined %}
+          <h3>Resultado de la suma:</h3>
+          <p>El resultado es: {{ resultado }}</p>
+        {% endif %}
+      </form>
+    </div>
+  </body>
+</html>
