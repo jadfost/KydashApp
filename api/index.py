@@ -1,6 +1,26 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from db.db import get_user, create_user
 from novedad import novedad_bp
+
+import os
+from pymongo import MongoClient
+from dotenv import load_dotenv
+
+load_dotenv()
+
+MONGO_URI = os.getenv("MONGO_URI")
+
+client = MongoClient(MONGO_URI)
+db = client['kydash']
+collection = db['usuarios']
+
+def get_user(username):
+    return collection.find_one({'username': username})
+
+def create_user(username, password):
+    if not get_user(username):
+        collection.insert_one({'username': username, 'password': password})
+        return True
+    return False
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Cambia esto por una clave segura
