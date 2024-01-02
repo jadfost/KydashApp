@@ -35,16 +35,6 @@ def dashboard():
         return render_template('dashboard.html')
     return redirect(url_for('login'))
 
-
-@app.route('/calculadora', methods=['GET', 'POST'])
-def calculadora():
-    if request.method == 'POST':
-        num1 = float(request.form['num1'])
-        num2 = float(request.form['num2'])
-        resultado = num1 + num2
-        return render_template('calculadora.html', resultado=resultado)
-    return render_template('calculadora.html')
-
 @app.route('/logout')
 def logout():
     session.pop('username', None)

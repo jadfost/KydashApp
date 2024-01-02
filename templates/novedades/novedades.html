@@ -1,39 +1,122 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{{ url_for('static', filename = 'css/dash.css') }}" rel="stylesheet" />
     <title>Kydash Co</title>
-    <!-- Vincula tu archivo CSS -->
-    <link href="{{ url_for('static', filename = 'css/nav.css') }}" rel="stylesheet" />
     <!-- Agrega el favicon -->
-    <link rel="shortcut icon" href="{{ url_for('static', filename = 'js/merapp.ico') }}" type="image/x-icon" />
-    <link rel="icon" href="{{ url_for('static', filename = 'js/merapp.ico') }}" type="image/x-icon" />
-  </head>
-  <body>
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+
+    <!-- Sidebar -->
     <div class="sidebar">
-      <a href="{{ url_for('dashboard') }}">Ir al Dashboard</a>
-      <a href="{{ url_for('calculadora') }}">Calculadora</a>
-      <a href="{{ url_for('novedad_bp.novedades') }}">Novedades</a>
-      <!-- Puedes agregar más enlaces para el menú -->
+        <a href="#" class="logo">
+           <img src="{{ url_for('static', filename = 'images/zyro-image.png') }}" alt="Descripción de la imagen" />
+        </a>
+        <ul class="side-menu">
+            <li><a href="{{ url_for('dashboard') }}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li class="active"><a href="{{ url_for('novedad_bp.novedades') }}"><i class='bx bx-analyse'></i>Novedades</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+              <a href="{{ url_for('logout') }}" class="logout">
+                <i class='bx bx-log-out-circle'></i>
+                Cerrar Sesión
+              </a>
+            </li>
+        </ul>
     </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
     <div class="content">
-      <h1>Cargar Archivos Excel</h1>
-      <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
-        <div class="flex flex-col items-center justify-center">
-          <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
-          <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" />
+        <!-- Navbar -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Buscar...">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="theme-toggle" hidden>
+            <label for="theme-toggle" class="theme-toggle"></label>
+            <a href="#" class="profile">
+              <img src="{{ url_for('static', filename = 'images/profile.jpg') }}" alt="Descripción de la imagen" />
+            </a>
+        </nav>
 
-          <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
-          <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" />
+        <!-- End of Navbar -->
 
-          <input type="submit" value="Procesar Archivos" class="mt-4" />
-        </div>
-        {% if resultado is defined %}
-          <h3>Resultado de la suma:</h3>
-          <p>El resultado es: {{ resultado }}</p>
-        {% endif %}
-      </form>
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>Novedades</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">
+                                Novedad
+                            </a></li>
+                        /
+                        <li><a href="#" class="active">Emulador</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="report">
+                    <i class='bx bx-cloud-download'></i>
+                    <span>Obtener Liquidaciones</span>
+                </a>
+            </div>
+
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-receipt'></i>
+                        <h3>Emulador Tradicional</h3>
+                        <i class='bx bx-filter'></i>
+                    </div>
+                    <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
+                      <div class="flex flex-col items-center justify-center">
+                        <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
+                        <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" />
+              
+                        <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
+                        <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" />
+              
+                        <input type="submit" value="Procesar Archivos" class="mt-4" />
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <div class="bottom-data">
+              <div class="orders">
+                  <div class="header">
+                      <i class='bx bx-receipt'></i>
+                      <h3>Emulador Pañaleras</h3>
+                      <i class='bx bx-filter'></i>
+                  </div>
+                  <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
+                    <div class="flex flex-col items-center justify-center">
+                      <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
+                      <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" />
+            
+                      <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
+                      <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" />
+            
+                      <input type="submit" value="Procesar Archivos" class="mt-4" />
+                    </div>
+                  </form>
+              </div>
+          </div>
+        </main>
+
     </div>
-  </body>
+
+    <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
+</body>
+
 </html>
