@@ -555,6 +555,30 @@ body {
     background: #1976d20e; /* Cambiar el color de fondo al pasar el cursor */
 }
 
+.content main .bottom-data .dropdown {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.content main .bottom-data .dropdown label {
+  margin-right: 10px; /* Ajusta el espacio entre la etiqueta y el select */
+}
+
+.content main .bottom-data .dropdown select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light);
+  padding: 4px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
+  background: #1976d2; /* Colores del degradado */
+  background-size: 400% 400%;
+}
 
 .content main .bottom-data .orders table {
   width: 100%;

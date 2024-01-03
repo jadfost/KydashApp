@@ -79,55 +79,115 @@
                         <h3>Emulador Tradicional</h3>
                         <i class='bx bx-filter'></i>
                     </div>
-                    <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
-                      <div class="flex flex-col items-center justify-center">
-                        <label for="archivo_A" class="drop-container" id="dropcontainer">
-                            <span>Suelta archivo aquí - Novedad</span>
-                            o
-                            <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" required>
-                        </label>
-                        <label for="archivo_B" class="drop-container" id="dropcontainer">
-                            <span>Suelta archivo aquí - Base</span>
-                            o
-                            <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" required>
-                        </label>
-                        <div class="form-input">
-                            <button class="search-btn" type="submit">
-                                <i class='bx bx-download'></i>
-                            </button>
-                        </div>                                                  
-                      </div>
-                    </form>
+                    <div class="dropdown">
+                        <label for="mes">Selecciona un mes:</label>
+                        <select name="mes" id="mes" onchange="mostrarFormulario()">
+                            <option value="enero">Enero</option>
+                            <option value="febrero">Febrero</option>
+                        </select>
+                    </div>
+                    <div id="formularioEnero">
+                        <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
+                        <div class="flex flex-col items-center justify-center">
+                            <label for="archivo_A" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Novedad Enero</span>
+                                o
+                                <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" required>
+                            </label>
+                            <label for="archivo_B" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Base Enero</span>
+                                o
+                                <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" required>
+                            </label>
+                            <div class="form-input">
+                                <button class="search-btn" type="submit">
+                                    <i class='bx bx-download'></i>
+                                </button>
+                            </div>                                                  
+                        </div>
+                        </form>
+                    </div>
+                    <div id="formularioFebrero" style="display: none;">
+                        <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
+                            <div class="flex flex-col items-center justify-center">
+                            <label for="archivo_A" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Novedad Febrero</span>
+                                o
+                                <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" required>
+                            </label>
+                            <label for="archivo_B" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Base Febrero</span>
+                                o
+                                <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" required>
+                            </label>
+                            <div class="form-input">
+                                <button class="search-btn" type="submit">
+                                    <i class='bx bx-download'></i>
+                                </button>
+                            </div>                                                  
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="bottom-data">
-              <div class="orders">
-                  <div class="header">
-                      <i class='bx bx-receipt'></i>
-                      <h3>Emulador Pañaleras</h3>
-                      <i class='bx bx-filter'></i>
-                  </div>
-                  <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
-                    <div class="flex flex-col items-center justify-center">
-                      <label for="archivo_A" class="drop-container" id="dropcontainer">
-                          <span>Suelta archivo aquí - Novedad</span>
-                          o
-                          <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" required>
-                      </label>
-                      <label for="archivo_B" class="drop-container" id="dropcontainer">
-                          <span>Suelta archivo aquí - Base</span>
-                          o
-                          <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" required>
-                      </label>
-                      <div class="form-input">
-                          <button class="search-btn" type="submit">
-                              <i class='bx bx-download'></i>
-                          </button>
-                      </div>                                                  
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-receipt'></i>
+                        <h3>Emulador Tradicional</h3>
+                        <i class='bx bx-filter'></i>
                     </div>
-                  </form>
-              </div>
-          </div>
+                    <div class="dropdown">
+                        <label for="mes">Selecciona un mes:</label>
+                        <select name="mes" id="mes" onchange="mostrarFormulario()">
+                            <option value="enero">Enero</option>
+                            <option value="febrero">Febrero</option>
+                        </select>
+                    </div>
+                    <div id="formularioEnero">
+                        <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
+                        <div class="flex flex-col items-center justify-center">
+                            <label for="archivo_A" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Novedad Enero</span>
+                                o
+                                <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" required>
+                            </label>
+                            <label for="archivo_B" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Base Enero</span>
+                                o
+                                <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" required>
+                            </label>
+                            <div class="form-input">
+                                <button class="search-btn" type="submit">
+                                    <i class='bx bx-download'></i>
+                                </button>
+                            </div>                                                  
+                        </div>
+                        </form>
+                    </div>
+                    <div id="formularioFebrero" style="display: none;">
+                        <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
+                            <div class="flex flex-col items-center justify-center">
+                            <label for="archivo_A" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Novedad Febrero</span>
+                                o
+                                <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" required>
+                            </label>
+                            <label for="archivo_B" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Base Febrero</span>
+                                o
+                                <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" required>
+                            </label>
+                            <div class="form-input">
+                                <button class="search-btn" type="submit">
+                                    <i class='bx bx-download'></i>
+                                </button>
+                            </div>                                                  
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </main>
 
     </div>

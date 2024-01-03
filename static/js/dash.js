@@ -54,3 +54,14 @@ toggler.addEventListener('change', function () {
         document.body.classList.remove('dark');
     }
 });
+
+function mostrarFormulario() {
+    var mesSeleccionado = document.getElementById("mes").value;
+    if (mesSeleccionado === "enero") {
+        document.getElementById("formularioEnero").style.display = "block";
+        document.getElementById("formularioFebrero").style.display = "none";
+    } else if (mesSeleccionado === "febrero") {
+        document.getElementById("formularioEnero").style.display = "none";
+        document.getElementById("formularioFebrero").style.display = "block";
+    }
+}
