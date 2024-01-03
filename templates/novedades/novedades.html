@@ -81,13 +81,21 @@
                     </div>
                     <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
                       <div class="flex flex-col items-center justify-center">
-                        <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
-                        <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" />
-              
-                        <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
-                        <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" />
-              
-                        <input type="submit" value="Procesar Archivos" class="mt-4" />
+                        <label for="archivo_A" class="drop-container" id="dropcontainer">
+                            <span>Suelta archivo aquí - Novedad</span>
+                            o
+                            <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" required>
+                        </label>
+                        <label for="archivo_B" class="drop-container" id="dropcontainer">
+                            <span>Suelta archivo aquí - Base</span>
+                            o
+                            <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" required>
+                        </label>
+                        <div class="form-input">
+                            <button class="search-btn" type="submit">
+                                <i class='bx bx-download'></i>
+                            </button>
+                        </div>                                                  
                       </div>
                     </form>
                 </div>
@@ -101,13 +109,21 @@
                   </div>
                   <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
                     <div class="flex flex-col items-center justify-center">
-                      <label for="archivo_A">Selecciona el archivo Libro1.xlsx:</label>
-                      <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" />
-            
-                      <label for="archivo_B">Selecciona el archivo Libro2.xlsx:</label>
-                      <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" />
-            
-                      <input type="submit" value="Procesar Archivos" class="mt-4" />
+                      <label for="archivo_A" class="drop-container" id="dropcontainer">
+                          <span>Suelta archivo aquí - Novedad</span>
+                          o
+                          <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" required>
+                      </label>
+                      <label for="archivo_B" class="drop-container" id="dropcontainer">
+                          <span>Suelta archivo aquí - Base</span>
+                          o
+                          <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" required>
+                      </label>
+                      <div class="form-input">
+                          <button class="search-btn" type="submit">
+                              <i class='bx bx-download'></i>
+                          </button>
+                      </div>                                                  
                     </div>
                   </form>
               </div>
