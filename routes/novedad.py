@@ -86,6 +86,7 @@ def procesar_archivos():
 
     # Obtener las fórmulas en la columna '% Pago' para Datos_B
     formulas_B = {cell.coordinate: cell for cell in ws_B["K"][1:] if cell.data_type == "f"}
+    formulas_B.update({cell.coordinate: cell for cell in ws_B["L"][1:] if cell.data_type == "f"})
 
     # Convertir los datos modificados de Datos_B a un dataframe de Pandas
     df_B = pd.DataFrame(datos_B)
@@ -104,7 +105,8 @@ def procesar_archivos():
 
     # Obtener las fórmulas en la columna '% Pago' para Datos_Z
     formulas_Z = {cell.coordinate: cell for cell in ws_Z["K"][1:] if cell.data_type == "f"}
-
+    formulas_Z.update({cell.coordinate: cell for cell in ws_Z["L"][1:] if cell.data_type == "f"})
+    
     # Convertir los datos modificados de Datos_Z a un dataframe de Pandas
     df_Z = pd.DataFrame(datos_Z)
 
