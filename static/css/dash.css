@@ -509,7 +509,7 @@ body {
     outline: none;
     border-radius: 0 36px 36px 0;
     cursor: pointer;
-    background: linear-gradient(45deg, #64b5f6, #1976d2, #64b5f6, #1976d2); /* Colores del degradado */
+    background: linear-gradient(45deg, #f0c56a, #feaf0a, #f1cc7c, #feaf0a); /* Colores del degradado */
     background-size: 400% 400%;
     animation: ripple 10s linear infinite; /* Aplica la animación al botón */
 }
@@ -529,6 +529,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 200px;
+  width: 690px;
   padding: 20px;
   border-radius: 10px;
   border: 2px dashed #1976d2;
@@ -576,7 +577,7 @@ body {
   outline: none;
   border-radius: 0 36px 36px 0;
   cursor: pointer;
-  background: #feaf0a; /* Colores del degradado */
+  background: #1976d2; /* Colores del degradado */
   background-size: 400% 400%;
 }
 
