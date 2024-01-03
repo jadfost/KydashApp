@@ -576,7 +576,7 @@ body {
   outline: none;
   border-radius: 0 36px 36px 0;
   cursor: pointer;
-  background: #1976d2; /* Colores del degradado */
+  background: #feaf0a; /* Colores del degradado */
   background-size: 400% 400%;
 }
 
