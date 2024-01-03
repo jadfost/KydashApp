@@ -55,13 +55,24 @@ toggler.addEventListener('change', function () {
     }
 });
 
-function mostrarFormulario() {
-    var mesSeleccionado = document.getElementById("mes").value;
+function mesTradicional() {
+    var mesSeleccionado = document.getElementById("mesTradiconal").value;
     if (mesSeleccionado === "enero") {
-        document.getElementById("formularioEnero").style.display = "block";
-        document.getElementById("formularioFebrero").style.display = "none";
+        document.getElementById("formTradiconalEnero").style.display = "block";
+        document.getElementById("formTradiconalFebrero").style.display = "none";
     } else if (mesSeleccionado === "febrero") {
-        document.getElementById("formularioEnero").style.display = "none";
-        document.getElementById("formularioFebrero").style.display = "block";
+        document.getElementById("formTradiconalEnero").style.display = "none";
+        document.getElementById("formTradiconalFebrero").style.display = "block";
+    }
+}
+
+function mesPanalera() {
+    var mesSeleccionado = document.getElementById("mesPanalera").value;
+    if (mesSeleccionado === "enero") {
+        document.getElementById("formPanaleroEnero").style.display = "block";
+        document.getElementById("formPanaleroFebrero").style.display = "none";
+    } else if (mesSeleccionado === "febrero") {
+        document.getElementById("formPanaleroEnero").style.display = "none";
+        document.getElementById("formPanaleroFebrero").style.display = "block";
     }
 }

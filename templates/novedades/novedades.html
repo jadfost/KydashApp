@@ -80,13 +80,13 @@
                         <i class='bx bx-filter'></i>
                     </div>
                     <div class="dropdown">
-                        <label for="mes">Selecciona un mes:</label>
-                        <select name="mes" id="mes" onchange="mostrarFormulario()">
+                        <label for="mesTradiconal">Selecciona un mes:</label>
+                        <select name="mesTradiconal" id="mesTradiconal" onchange="mesTradicional()">
                             <option value="enero">Enero</option>
                             <option value="febrero">Febrero</option>
                         </select>
                     </div>
-                    <div id="formularioEnero">
+                    <div id="formTradiconalEnero">
                         <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
                         <div class="flex flex-col items-center justify-center">
                             <label for="archivo_A" class="drop-container" id="dropcontainer">
@@ -107,7 +107,7 @@
                         </div>
                         </form>
                     </div>
-                    <div id="formularioFebrero" style="display: none;">
+                    <div id="formTradiconalFebrero" style="display: none;">
                         <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
                             <div class="flex flex-col items-center justify-center">
                             <label for="archivo_A" class="drop-container" id="dropcontainer">
@@ -134,17 +134,17 @@
                 <div class="orders">
                     <div class="header">
                         <i class='bx bx-receipt'></i>
-                        <h3>Emulador Tradicional</h3>
+                        <h3>Emulador Pañaleras</h3>
                         <i class='bx bx-filter'></i>
                     </div>
                     <div class="dropdown">
-                        <label for="mes">Selecciona un mes:</label>
-                        <select name="mes" id="mes" onchange="mostrarFormulario()">
+                        <label for="mesPanalera">Selecciona un mes:</label>
+                        <select name="mesPanalera" id="mesPanalera" onchange="mesPanalera()">
                             <option value="enero">Enero</option>
                             <option value="febrero">Febrero</option>
                         </select>
                     </div>
-                    <div id="formularioEnero">
+                    <div id="formPanaleroEnero">
                         <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
                         <div class="flex flex-col items-center justify-center">
                             <label for="archivo_A" class="drop-container" id="dropcontainer">
@@ -165,7 +165,7 @@
                         </div>
                         </form>
                     </div>
-                    <div id="formularioFebrero" style="display: none;">
+                    <div id="formPanaleroFebrero" style="display: none;">
                         <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
                             <div class="flex flex-col items-center justify-center">
                             <label for="archivo_A" class="drop-container" id="dropcontainer">
