@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from routes import novedad_bp
+from routes.tradicional.diciembre_2023 import novedad_dic2023
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Cambia esto por una clave segura
@@ -42,6 +43,7 @@ def logout():
 
 # Registra el blueprint en tu aplicación
 app.register_blueprint(novedad_bp, url_prefix='/novedad')
+app.register_blueprint(novedad_dic2023, url_prefix='/tradicional/diciembre')
 
 if __name__ == '__main__':
     app.run(debug=True)

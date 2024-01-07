@@ -80,11 +80,40 @@
                         <i class='bx bx-filter'></i>
                     </div>
                     <div class="dropdown">
+                        <label for="anoTradiconal">Selecciona un año:</label>
+                        <select name="anoTradiconal" id="anoTradiconal">
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>                        
+                    </div>
+                    <div class="dropdown">
                         <label for="mesTradiconal">Selecciona un mes:</label>
                         <select name="mesTradiconal" id="mesTradiconal" onchange="mesTradicional()">
-                            <option value="enero">Enero</option>
-                            <option value="febrero">Febrero</option>
+                            <option value="enero" style="display: none;">Enero</option>
+                            <option value="febrero" style="display: none;">Febrero</option>
+                            <option value="diciembre" style="display: none;">Diciembre</option>
                         </select>
+                    </div>
+                    <div id="formTradiconalDic2023">
+                        <form action="{{ url_for('novedad_dic2023.procesar_archivos') }}" method="post" enctype="multipart/form-data">
+                        <div class="flex flex-col items-center justify-center">
+                            <label for="archivo_A" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Novedad Diciembre</span>
+                                o
+                                <input type="file" name="archivo_A" id="archivo_A" accept=".xlsx" required>
+                            </label>
+                            <label for="archivo_B" class="drop-container" id="dropcontainer">
+                                <span>Suelta archivo aquí - Base Diciembre</span>
+                                o
+                                <input type="file" name="archivo_B" id="archivo_B" accept=".xlsx" required>
+                            </label>
+                            <div class="form-input">
+                                <button class="search-btn" type="submit">
+                                    <i class='bx bx-download'></i>
+                                </button>
+                            </div>                                                  
+                        </div>
+                        </form>
                     </div>
                     <div id="formTradiconalEnero">
                         <form action="{{ url_for('novedad_bp.procesar_archivos') }}" method="post" enctype="multipart/form-data">
