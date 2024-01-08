@@ -509,7 +509,7 @@ body {
     outline: none;
     border-radius: 0 36px 36px 0;
     cursor: pointer;
-    background: linear-gradient(45deg, #f0c56a, #feaf0a, #f1cc7c, #feaf0a); /* Colores del degradado */
+    background: linear-gradient(45deg, #6a7ef0, #feaf0a, #7c7ef1, #feaf0a); /* Colores del degradado */
     background-size: 400% 400%;
     animation: ripple 10s linear infinite; /* Aplica la animación al botón */
 }
@@ -529,7 +529,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 200px;
-  width: 690px;
+  width: 400px;
   padding: 20px;
   border-radius: 10px;
   border: 2px dashed #1976d2;
@@ -543,17 +543,16 @@ body {
 }
 
 .content main .bottom-data .drop-container input[type="file"] {
-    color: #1976d2; /* Color del texto */
-    border-radius: 10px; /* Agregar bordes redondeados al input */
-    border: 1px solid #1976d2; /* Agregar borde al input */
-    padding: 8px 16px; /* Ajustar el espaciado interno */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
-    transition: all 0.3s ease; /* Transición suave al cambiar */
+    color: #1976d2; 
+    border-radius: 10px; 
+    border: 1px solid #1976d2; 
+    padding: 8px 16px;
+    cursor: pointer; 
+    transition: all 0.3s ease; 
 }
 
-/* Estilo al pasar el cursor sobre el botón */
 .content main .bottom-data .drop-container input[type="file"]:hover {
-    background: #1976d20e; /* Cambiar el color de fondo al pasar el cursor */
+    background: #1976d20e; 
 }
 
 .content main .bottom-data .dropdown {
@@ -563,7 +562,7 @@ body {
 }
 
 .content main .bottom-data .dropdown label {
-  margin-right: 10px; /* Ajusta el espacio entre la etiqueta y el select */
+  margin-right: 10px;
 }
 
 .content main .bottom-data .dropdown select {
@@ -571,14 +570,17 @@ body {
   justify-content: center;
   align-items: center;
   color: var(--light);
-  padding: 4px;
+  padding: 6px;
   font-size: 16px;
   border: none;
   outline: none;
-  border-radius: 0 36px 36px 0;
+  border-radius: 36px 36px 36px 36px;
   cursor: pointer;
-  background: #1976d2; /* Colores del degradado */
+  background: #1976d2; 
   background-size: 400% 400%;
+  margin-right: 10px;
+  width: 120px;
+  text-align: center;
 }
 
 .content main .bottom-data .orders table {
