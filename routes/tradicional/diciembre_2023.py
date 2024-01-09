@@ -3,12 +3,13 @@ import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 from io import BytesIO
+import asyncio
 
 novedad_dic2023 = Blueprint("novedad_dic2023", __name__)
 app = Flask(__name__)  # Definir la instancia de Flask
 
 
-def comparar_archivos(archivo_A, archivo_B):
+async def comparar_archivos(archivo_A, archivo_B):
     datos_A = pd.read_excel(archivo_A, sheet_name="TAT")
     datos_B = pd.read_excel(archivo_B, sheet_name="TAT")
     datos_X = pd.read_excel(archivo_A, sheet_name="ICH")
@@ -29,122 +30,124 @@ def comparar_archivos(archivo_A, archivo_B):
     datos_Z["V-ResultDiapersImpact"] = datos_Z["RESULTADO IMPACTOS DIAPER Y DIAPER PANTS 100"]
     datos_Z["V-Category"] = datos_Z["CATEGORÍA"]
 
-    # Logica para Datos_A y Datos_B
-    for idx, fila_A in datos_A.iterrows():
-        id_persona = fila_A["CEDULA"]
-        
-        cuota_A = fila_A[" CUOTA VENTA TOTAL DICIEMBRE"]
-        resultcuota_A = fila_A["RESULTADO VENTA TOTAL DICIEMBRE"]
-        
-        diapers_A = fila_A[" CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"]
-        resultdiapers_A = fila_A["RESULTADO  IMPACTOS DIAPER Y DIAPER PANTS 100 DICIEMBRE"]
-        
-        category_A = fila_A["CATEGORÍA"]
-
-        if id_persona in datos_B["CEDULA"].values:
-            cuota_B = datos_B.loc[datos_B["CEDULA"] == id_persona, " CUOTA VENTA TOTAL DICIEMBRE"].values[0]
-            resultcuota_B = datos_B.loc[datos_B["CEDULA"] == id_persona, "RESULTADO VENTA TOTAL DICIEMBRE"].values[0]
+    async def procesar_datos():
+        # Logica para Datos_A y Datos_B
+        for idx, fila_A in datos_A.iterrows():
+            id_persona = fila_A["CEDULA"]
             
-            diapers_B = datos_B.loc[datos_B["CEDULA"] == id_persona, " CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"].values[0]
-            resultdiapers_B = datos_B.loc[datos_B["CEDULA"] == id_persona, "RESULTADO  IMPACTOS DIAPER Y DIAPER PANTS 100 DICIEMBRE"].values[0]
+            cuota_A = fila_A[" CUOTA VENTA TOTAL DICIEMBRE"]
+            resultcuota_A = fila_A["RESULTADO VENTA TOTAL DICIEMBRE"]
+            
+            diapers_A = fila_A[" CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"]
+            resultdiapers_A = fila_A["RESULTADO  IMPACTOS DIAPER Y DIAPER PANTS 100 DICIEMBRE"]
+            
+            category_A = fila_A["CATEGORÍA"]
 
-            category_B = datos_B.loc[datos_B["CEDULA"] == id_persona, "CATEGORÍA"].values[0]
-
-            if cuota_A != cuota_B:
-                datos_B.loc[datos_B["CEDULA"] == id_persona, " CUOTA VENTA TOTAL DICIEMBRE"] = cuota_A
-            if resultcuota_A != resultcuota_B:
-                datos_B.loc[datos_B["CEDULA"] == id_persona, "RESULTADO VENTA TOTAL DICIEMBRE"] = resultcuota_A
+            if id_persona in datos_B["CEDULA"].values:
+                cuota_B = datos_B.loc[datos_B["CEDULA"] == id_persona, " CUOTA VENTA TOTAL DICIEMBRE"].values[0]
+                resultcuota_B = datos_B.loc[datos_B["CEDULA"] == id_persona, "RESULTADO VENTA TOTAL DICIEMBRE"].values[0]
                 
-            if diapers_A != diapers_B:
-                datos_B.loc[datos_B["CEDULA"] == id_persona, " CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"] = diapers_A
-            if resultdiapers_A != resultdiapers_B:
-                datos_B.loc[datos_B["CEDULA"] == id_persona, "RESULTADO  IMPACTOS DIAPER Y DIAPER PANTS 100 DICIEMBRE"] = resultdiapers_A
-                
-            if category_A != category_B:
-                datos_B.loc[datos_B["CEDULA"] == id_persona, "CATEGORÍA"] = category_A    
-        else:
-            datos_B = pd.concat([datos_B, fila_A.to_frame().T], ignore_index=True)
+                diapers_B = datos_B.loc[datos_B["CEDULA"] == id_persona, " CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"].values[0]
+                resultdiapers_B = datos_B.loc[datos_B["CEDULA"] == id_persona, "RESULTADO  IMPACTOS DIAPER Y DIAPER PANTS 100 DICIEMBRE"].values[0]
 
-    datos_B["R-Cuota"] = "Igual"
-    datos_B["R-ResultCuota"] = "Igual"
-    datos_B["R-Diapers"] = "Igual"
-    datos_B["R-ResultDiapers"] = "Igual"
-    datos_B["R-Category"] = "Igual"
+                category_B = datos_B.loc[datos_B["CEDULA"] == id_persona, "CATEGORÍA"].values[0]
 
-    datos_B.loc[datos_B["V-Cuota"] != datos_B[" CUOTA VENTA TOTAL DICIEMBRE"], "R-Cuota"] = "Hubo cambio"
-    datos_B.loc[datos_B["V-ResultCuota"] != datos_B["RESULTADO VENTA TOTAL DICIEMBRE"], "R-ResultCuota"] = "Hubo cambio"
+                if cuota_A != cuota_B:
+                    datos_B.loc[datos_B["CEDULA"] == id_persona, " CUOTA VENTA TOTAL DICIEMBRE"] = cuota_A
+                if resultcuota_A != resultcuota_B:
+                    datos_B.loc[datos_B["CEDULA"] == id_persona, "RESULTADO VENTA TOTAL DICIEMBRE"] = resultcuota_A
+                    
+                if diapers_A != diapers_B:
+                    datos_B.loc[datos_B["CEDULA"] == id_persona, " CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"] = diapers_A
+                if resultdiapers_A != resultdiapers_B:
+                    datos_B.loc[datos_B["CEDULA"] == id_persona, "RESULTADO  IMPACTOS DIAPER Y DIAPER PANTS 100 DICIEMBRE"] = resultdiapers_A
+                    
+                if category_A != category_B:
+                    datos_B.loc[datos_B["CEDULA"] == id_persona, "CATEGORÍA"] = category_A    
+            else:
+                datos_B = pd.concat([datos_B, fila_A.to_frame().T], ignore_index=True)
 
-    datos_B.loc[datos_B["V-Diapers"] != datos_B[" CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"], "R-Diapers"] = "Hubo cambio"
-    datos_B.loc[datos_B["V-ResultDiapers"] != datos_B["RESULTADO  IMPACTOS DIAPER Y DIAPER PANTS 100 DICIEMBRE"], "R-ResultDiapers"] = "Hubo cambio"
+            datos_B["R-Cuota"] = "Igual"
+            datos_B["R-ResultCuota"] = "Igual"
+            datos_B["R-Diapers"] = "Igual"
+            datos_B["R-ResultDiapers"] = "Igual"
+            datos_B["R-Category"] = "Igual"
 
-    datos_B.loc[datos_B["V-Category"] != datos_B["CATEGORÍA"], "R-Category"] = "Hubo cambio"
+            datos_B.loc[datos_B["V-Cuota"] != datos_B[" CUOTA VENTA TOTAL DICIEMBRE"], "R-Cuota"] = "Hubo cambio"
+            datos_B.loc[datos_B["V-ResultCuota"] != datos_B["RESULTADO VENTA TOTAL DICIEMBRE"], "R-ResultCuota"] = "Hubo cambio"
 
-    # Logica para Datos_X y Datos_Z
-    for idx, fila_X in datos_X.iterrows():
-        id_persona = fila_X["CEDULA"]
+            datos_B.loc[datos_B["V-Diapers"] != datos_B[" CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"], "R-Diapers"] = "Hubo cambio"
+            datos_B.loc[datos_B["V-ResultDiapers"] != datos_B["RESULTADO  IMPACTOS DIAPER Y DIAPER PANTS 100 DICIEMBRE"], "R-ResultDiapers"] = "Hubo cambio"
+
+            datos_B.loc[datos_B["V-Category"] != datos_B["CATEGORÍA"], "R-Category"] = "Hubo cambio"
+
+        # Logica para Datos_X y Datos_Z
+        for idx, fila_X in datos_X.iterrows():
+            id_persona = fila_X["CEDULA"]
+            
+            cuota_X = fila_X[" CUOTA VENTA TOTAL DICIEMBRE"]
+            resultcuota_X = fila_X["RESULTADO VENTA TOTAL DICIEMBRE"]
+            
+            diapers_X = fila_X[" CUOTA MARCA FOCO DIAPER Y DIAPER PANTS 100"]
+            resultdiapers_X = fila_X["RESULTADO CUOTA DIAPER Y DIAPER PANTS 100"]
+            
+            diapersimpact_X = fila_X[" CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"]
+            resultdiapersimpact_X = fila_X["RESULTADO IMPACTOS DIAPER Y DIAPER PANTS 100"]
+            
+            category_X = fila_X["CATEGORÍA"]
+
+            if id_persona in datos_Z["CEDULA"].values:
+                cuota_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA VENTA TOTAL DICIEMBRE"].values[0]
+                resultcuota_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO VENTA TOTAL DICIEMBRE"].values[0]
+
+                diapers_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA MARCA FOCO DIAPER Y DIAPER PANTS 100"].values[0]
+                resultdiapers_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO CUOTA DIAPER Y DIAPER PANTS 100"].values[0]
+
+                diapersimpact_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"].values[0]
+                resultdiapersimpact_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO IMPACTOS DIAPER Y DIAPER PANTS 100"].values[0]
+
+                category_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, "CATEGORÍA"].values[0]
+
+                if cuota_X != cuota_Z:
+                    datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA VENTA TOTAL DICIEMBRE"] = cuota_X
+                if resultcuota_X != resultcuota_Z:
+                    datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO VENTA TOTAL DICIEMBRE"] = resultcuota_X
+                    
+                if diapers_X != diapers_Z:
+                    datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA MARCA FOCO DIAPER Y DIAPER PANTS 100"] = diapers_X
+                if resultdiapers_X != resultdiapers_Z:
+                    datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO CUOTA DIAPER Y DIAPER PANTS 100"] = resultdiapers_X
+
+                if diapersimpact_X != diapersimpact_Z:
+                    datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"] = diapersimpact_X
+                if resultdiapersimpact_X != resultdiapersimpact_Z:
+                    datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO IMPACTOS DIAPER Y DIAPER PANTS 100"] = resultdiapersimpact_X
+                    
+                if category_X != category_Z:
+                    datos_Z.loc[datos_Z["CEDULA"] == id_persona, "CATEGORÍA"] = category_X    
+            else:
+                datos_Z = pd.concat([datos_Z, fila_X.to_frame().T], ignore_index=True)
+
+        datos_Z["R-Cuota"] = "Igual"
+        datos_Z["R-ResultCuota"] = "Igual"
+        datos_Z["R-Diapers"] = "Igual"
+        datos_Z["R-ResultDiapers"] = "Igual"
+        datos_Z["R-DiapersImpact"] = "Igual"
+        datos_Z["R-ResultDiapersImpact"] = "Igual"
+        datos_Z["R-Category"] = "Igual"
+
+        datos_Z.loc[datos_Z["V-Cuota"] != datos_Z[" CUOTA VENTA TOTAL DICIEMBRE"], "R-Cuota"] = "Hubo cambio"
+        datos_Z.loc[datos_Z["V-ResultCuota"] != datos_Z["RESULTADO VENTA TOTAL DICIEMBRE"], "R-ResultCuota"] = "Hubo cambio"
         
-        cuota_X = fila_X[" CUOTA VENTA TOTAL DICIEMBRE"]
-        resultcuota_X = fila_X["RESULTADO VENTA TOTAL DICIEMBRE"]
+        datos_Z.loc[datos_Z["V-Diapers"] != datos_Z[" CUOTA MARCA FOCO DIAPER Y DIAPER PANTS 100"], "R-Diapers"] = "Hubo cambio"
+        datos_Z.loc[datos_Z["V-ResultDiapers"] != datos_Z["RESULTADO CUOTA DIAPER Y DIAPER PANTS 100"], "R-ResultDiapers"] = "Hubo cambio"
+
+        datos_Z.loc[datos_Z["V-DiapersImpact"] != datos_Z[" CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"], "R-DiapersImpact"] = "Hubo cambio"
+        datos_Z.loc[datos_Z["V-ResultDiapersImpact"] != datos_Z["RESULTADO IMPACTOS DIAPER Y DIAPER PANTS 100"], "R-ResultDiapersImpact"] = "Hubo cambio"
+
+        datos_Z.loc[datos_Z["V-Category"] != datos_Z["CATEGORÍA"], "R-Category"] = "Hubo cambio"
         
-        diapers_X = fila_X[" CUOTA MARCA FOCO DIAPER Y DIAPER PANTS 100"]
-        resultdiapers_X = fila_X["RESULTADO CUOTA DIAPER Y DIAPER PANTS 100"]
-        
-        diapersimpact_X = fila_X[" CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"]
-        resultdiapersimpact_X = fila_X["RESULTADO IMPACTOS DIAPER Y DIAPER PANTS 100"]
-        
-        category_X = fila_X["CATEGORÍA"]
-
-        if id_persona in datos_Z["CEDULA"].values:
-            cuota_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA VENTA TOTAL DICIEMBRE"].values[0]
-            resultcuota_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO VENTA TOTAL DICIEMBRE"].values[0]
-
-            diapers_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA MARCA FOCO DIAPER Y DIAPER PANTS 100"].values[0]
-            resultdiapers_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO CUOTA DIAPER Y DIAPER PANTS 100"].values[0]
-
-            diapersimpact_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"].values[0]
-            resultdiapersimpact_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO IMPACTOS DIAPER Y DIAPER PANTS 100"].values[0]
-
-            category_Z = datos_Z.loc[datos_Z["CEDULA"] == id_persona, "CATEGORÍA"].values[0]
-
-            if cuota_X != cuota_Z:
-                datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA VENTA TOTAL DICIEMBRE"] = cuota_X
-            if resultcuota_X != resultcuota_Z:
-                datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO VENTA TOTAL DICIEMBRE"] = resultcuota_X
-                
-            if diapers_X != diapers_Z:
-                datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA MARCA FOCO DIAPER Y DIAPER PANTS 100"] = diapers_X
-            if resultdiapers_X != resultdiapers_Z:
-                datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO CUOTA DIAPER Y DIAPER PANTS 100"] = resultdiapers_X
-
-            if diapersimpact_X != diapersimpact_Z:
-                datos_Z.loc[datos_Z["CEDULA"] == id_persona, " CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"] = diapersimpact_X
-            if resultdiapersimpact_X != resultdiapersimpact_Z:
-                datos_Z.loc[datos_Z["CEDULA"] == id_persona, "RESULTADO IMPACTOS DIAPER Y DIAPER PANTS 100"] = resultdiapersimpact_X
-                
-            if category_X != category_Z:
-                datos_Z.loc[datos_Z["CEDULA"] == id_persona, "CATEGORÍA"] = category_X    
-        else:
-            datos_Z = pd.concat([datos_Z, fila_X.to_frame().T], ignore_index=True)
-
-    datos_Z["R-Cuota"] = "Igual"
-    datos_Z["R-ResultCuota"] = "Igual"
-    datos_Z["R-Diapers"] = "Igual"
-    datos_Z["R-ResultDiapers"] = "Igual"
-    datos_Z["R-DiapersImpact"] = "Igual"
-    datos_Z["R-ResultDiapersImpact"] = "Igual"
-    datos_Z["R-Category"] = "Igual"
-
-    datos_Z.loc[datos_Z["V-Cuota"] != datos_Z[" CUOTA VENTA TOTAL DICIEMBRE"], "R-Cuota"] = "Hubo cambio"
-    datos_Z.loc[datos_Z["V-ResultCuota"] != datos_Z["RESULTADO VENTA TOTAL DICIEMBRE"], "R-ResultCuota"] = "Hubo cambio"
-    
-    datos_Z.loc[datos_Z["V-Diapers"] != datos_Z[" CUOTA MARCA FOCO DIAPER Y DIAPER PANTS 100"], "R-Diapers"] = "Hubo cambio"
-    datos_Z.loc[datos_Z["V-ResultDiapers"] != datos_Z["RESULTADO CUOTA DIAPER Y DIAPER PANTS 100"], "R-ResultDiapers"] = "Hubo cambio"
-
-    datos_Z.loc[datos_Z["V-DiapersImpact"] != datos_Z[" CUOTA IMPACTOS DIAPER Y DIAPER PANTS 100"], "R-DiapersImpact"] = "Hubo cambio"
-    datos_Z.loc[datos_Z["V-ResultDiapersImpact"] != datos_Z["RESULTADO IMPACTOS DIAPER Y DIAPER PANTS 100"], "R-ResultDiapersImpact"] = "Hubo cambio"
-
-    datos_Z.loc[datos_Z["V-Category"] != datos_Z["CATEGORÍA"], "R-Category"] = "Hubo cambio"
-
+        await procesar_datos()
     return datos_B, datos_Z
 
 @novedad_dic2023.route("/")
@@ -153,11 +156,11 @@ def novedades():
 
 
 @novedad_dic2023.route("/procesar_archivos", methods=["POST"])
-def procesar_archivos():
+async def procesar_archivos():
     archivo_A = request.files["archivo_A"]
     archivo_B = request.files["archivo_B"]
 
-    datos_B, datos_Z = comparar_archivos(archivo_A, archivo_B)
+    datos_B, datos_Z = await comparar_archivos(archivo_A, archivo_B)
 
     # Leer el archivo existente para conservar las fórmulas para Datos_B
     wb = load_workbook(archivo_B)
