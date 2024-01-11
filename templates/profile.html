@@ -13,46 +13,10 @@
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="#" class="logo">
-        <img src="{{ url_for('static', filename = 'images/zyro-image.png') }}" alt="Descripción de la imagen" />
-        </a>
-        <ul class="side-menu">
-            <li><a href="{{ url_for('dashboard') }}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li><a href="{{ url_for('novedad_bp.novedades') }}"><i class='bx bx-analyse'></i>Novedades</a></li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-            <a href="{{ url_for('logout') }}" class="logout">
-                <i class='bx bx-log-out-circle'></i>
-                Cerrar Sesión
-            </a>
-            </li>
-        </ul>
-    </div>
-    <!-- End of Sidebar -->
-
+    {% include 'util/sidebar.html' %}
     <!-- Main Content -->
     <div class="content">
-        <!-- Navbar -->
-        <nav>
-            <i class='bx bx-menu'></i>
-            <form action="#">
-                <div class="form-input">
-                    <input type="search" placeholder="Buscar...">
-                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
-                </div>
-            </form>
-            <input type="checkbox" id="theme-toggle" hidden>
-            <label for="theme-toggle" class="theme-toggle"></label>
-            <a href="{{ url_for('profile') }}" class="profile">
-            <img src="{{ url_for('static', filename = 'images/profile.jpg') }}" alt="Descripción de la imagen" />
-            </a>
-        </nav>
-
-        <!-- End of Navbar -->
-
+        {% include 'util/nav.html' %}
         <main>
             <div class="header">
                 <div class="left">
