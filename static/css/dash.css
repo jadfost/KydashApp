@@ -170,6 +170,10 @@ body {
   color: var(--danger);
 }
 
+.sidebar .side-menu li a.copyrigh {
+  color: var(--primary);
+}
+
 .content {
   position: relative;
   width: calc(100% - 230px);

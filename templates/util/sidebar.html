@@ -1,7 +1,32 @@
 <!-- sidebar.html -->
 
+<style>
+    .logo img {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .logo:hover img {
+        transform: rotate(180deg);
+    }
+
+    .rotate-on-load img {
+        transform: rotate(180deg); /* You can adjust the rotation degree as needed */
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        if (!sessionStorage.getItem('logoAnimated')) {
+            $('.logo img').addClass('rotate-on-load');
+            sessionStorage.setItem('logoAnimated', true);
+        }
+    });
+</script>
+
+
 <div class="sidebar">
-    <a href="#" class="logo">
+    <a href="{{ url_for('dashboard') }}" class="logo">
         <img src="{{ url_for('static', filename='images/zyro-image.png') }}" alt="Descripción de la imagen" />
     </a>
     <ul class="side-menu">
@@ -17,6 +42,14 @@
             <a href="{{ url_for('logout') }}" class="logout">
                 <i class='bx bx-log-out-circle'></i>
                 Cerrar Sesión
+            </a>
+        </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a href="https://github.com/jadfost" class="copyrigh">
+                <i class='bx bx-copyright'></i>
+                JadFost
             </a>
         </li>
     </ul>
