@@ -36,6 +36,12 @@ def dashboard():
         return render_template('dashboard.html')
     return redirect(url_for('login'))
 
+@app.route('/profile')
+def profile():
+    if 'username' in session:
+        return render_template('profile.html')
+    return redirect(url_for('login'))
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)

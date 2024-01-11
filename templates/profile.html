@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{{ url_for('static', filename = 'css/dash.css') }}" rel="stylesheet" />
+    <title>Kydash Co</title>
+    <!-- Agrega el favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+        <img src="{{ url_for('static', filename = 'images/zyro-image.png') }}" alt="Descripción de la imagen" />
+        </a>
+        <ul class="side-menu">
+            <li><a href="{{ url_for('dashboard') }}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a href="{{ url_for('novedad_bp.novedades') }}"><i class='bx bx-analyse'></i>Novedades</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+            <a href="{{ url_for('logout') }}" class="logout">
+                <i class='bx bx-log-out-circle'></i>
+                Cerrar Sesión
+            </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Buscar...">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="theme-toggle" hidden>
+            <label for="theme-toggle" class="theme-toggle"></label>
+            <a href="{{ url_for('profile') }}" class="profile">
+            <img src="{{ url_for('static', filename = 'images/profile.jpg') }}" alt="Descripción de la imagen" />
+            </a>
+        </nav>
+
+        <!-- End of Navbar -->
+
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>Mi Perfil</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="{{ url_for('dashboard') }}">
+                                Dashboard
+                            </a></li>
+                        /
+                        <li><a href="{{ url_for('profile') }}" class="active">Perfil</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="report">
+                    <i class='bx bx-history'></i>
+                    <span>Historial de Cambios</span>
+                </a>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
+</body>
+
+</html>
