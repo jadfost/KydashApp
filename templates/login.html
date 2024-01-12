@@ -32,7 +32,7 @@
       </div>
       <div class="formBx">
         <div class="form signinForm">
-          <form method="post" action="/login">
+          <form method="post" action="{{ url_for('auth_bp.login') }}">
             <img src="{{ url_for('static', filename = 'images/image.png') }}" alt="Descripción de la imagen" />
             <h3>Iniciar Sesion</h3>
             <input type="text" name="username" placeholder="Usuario" />
@@ -43,7 +43,7 @@
         </div>
 
         <div class="form signupForm">
-          <form method="post" action="/register">
+          <form method="post" action="{{ url_for('auth_bp.register') }}">
             <img src="{{ url_for('static', filename = 'images/image.png') }}" alt="Descripción de la imagen" />
             <h3>Registrarse</h3>
             <input type="text" name="username" placeholder="Usuario" />
