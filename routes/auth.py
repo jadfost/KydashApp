@@ -10,7 +10,7 @@ def login():
         password = request.form['password']
         if username == 'admin' and password == '123456':
             session['username'] = username
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('dashboard_bp.dashboard'))
         else:
             flash("Credenciales inválidas. Inténtalo de nuevo.", 'error')
     return render_template('login.html')
