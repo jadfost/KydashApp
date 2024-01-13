@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-[![Logo](https://github.com/jadfost/flask-python/blob/main/images/image.png)](https://github.com/jadfost/flask-python)
+[![Logo](images/image.png)](https://github.com/jadfost/flask-python)
 
   <h3 align="center">KyDash Co</h3>
 
