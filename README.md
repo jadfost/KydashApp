@@ -1,22 +1,80 @@
-[![Python package](https://github.com/jadfost/flask-python/actions/workflows/python-package.yml/badge.svg?event=push)](https://github.com/jadfost/flask-python/actions/workflows/python-package.yml)
+<br/>
+<p align="center">
+  <a href="https://github.com/jadfost/flask-python">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-# Flask + Vercel
+  <h3 align="center">KyDash Co</h3>
 
-This example shows how to use Flask 3 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+  <p align="center">
+    Introducing our innovative data-driven application designed for seamless data analysis and predictive modeling.
+    <br/>
+    <br/>
+    <a href="https://github.com/jadfost/flask-python"><strong>Explore the docs »</strong></a>
+    <br/>
+    <br/>
+    <a href="https://github.com/jadfost/flask-python">View Demo</a>
+    .
+    <a href="https://github.com/jadfost/flask-python/issues">Report Bug</a>
+    .
+    <a href="https://github.com/jadfost/flask-python/issues">Request Feature</a>
+  </p>
+</p>
 
-## Demo
+![Contributors](https://img.shields.io/github/contributors/jadfost/flask-python?color=dark-green) ![Stargazers](https://img.shields.io/github/stars/jadfost/flask-python?style=social) ![Issues](https://img.shields.io/github/issues/jadfost/flask-python) ![License](https://img.shields.io/github/license/jadfost/flask-python) 
 
-https://kydash.vercel.app/
+## Table Of Contents
 
-## How it Works
+* [About the Project](#about-the-project)
+* [Built With](#built-with)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Authors](#authors)
+* [Acknowledgements](#acknowledgements)
 
-This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions.
+## About The Project
 
-## Running Locally
+Introducing our innovative data-driven application designed for seamless data analysis and predictive modeling. Built upon the Flask framework, our platform leverages cutting-edge tools and automation to empower users in unlocking valuable insights from their datasets.
 
-```bash
-npm i -g vercel
-vercel dev
-```
+## Built With
 
-Your Flask application is now available at `http://localhost:3000`.
+The heart of our application beats with Flask, a micro-framework in Python. Flask's minimalist approach empowers us to build scalable, modular, and user-friendly web interfaces, making it the ideal choice for our dynamic platform.
+
+Leveraging the prowess of Pandas, NumPy, and Openpyxl, our application integrates state-of-the-art analytical tools. Pandas for data manipulation, NumPy for scientific computing, and Openpyxl for seamless Excel integration collectively enhance our data analysis capabilities.
+
+The predictive modeling prowess of our application is driven by Scikit-Learn, a robust machine learning library. Scikit-Learn empowers users to implement predictive algorithms effortlessly, contributing to accurate and reliable model predictions.
+
+* [Flask](https://github.com/pallets/flask/)
+
+## Roadmap
+
+See the [open issues](https://github.com/jadfost/flask-python/issues) for a list of proposed features (and known issues).
+
+## Contributing
+
+
+
+### Creating A Pull Request
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+MIT License
+
+Copyright (c) [2024] [JadFost]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Authors
+
+* **JadFost** - *Lead Developer* - [JadFost](https://github.com/jadfost) - **
