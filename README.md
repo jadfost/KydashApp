@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/jadfost/flask-python">
-    <img src="static/images/image.png" alt="Logo" width="80" height="80">
+    <img src="static/images/zyro-image.png" alt="Logo" width="120" height="120">
   </a>
   <h3 align="center">KyDash Co</h3>
 
