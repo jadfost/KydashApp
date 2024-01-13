@@ -1,7 +1,8 @@
 <br/>
 <p align="center">
-[![Logo](images/image.png)](https://github.com/jadfost/flask-python)
-
+ <a href="https://github.com/jadfost/flask-python">
+    <img src="images/image.png" alt="Logo" width="80" height="80">
+  </a>
   <h3 align="center">KyDash Co</h3>
 
   <p align="center">
