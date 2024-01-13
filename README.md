@@ -1,10 +1,6 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/jadfost/flask-python">
-    <img src="images/image.png" alt="Logo" width="80" height="80">
-  </a>
-  [![Logo](images/image.png)](https://github.com/jadfost/flask-python)
-
+[![Logo](https://github.com/jadfost/flask-python/blob/main/images/image.png)](https://github.com/jadfost/flask-python)
 
   <h3 align="center">KyDash Co</h3>
 
