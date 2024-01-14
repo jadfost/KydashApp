@@ -141,7 +141,12 @@ body.active
   font-size: 12px; /* Establece el tamaño de la fuente */
   color: #2c2c2c; /* Color del texto */
   margin-top: 10px; /* Espacio superior */
+  cursor: pointer;
 }
+
+.formBx h3:hover {
+    color: #2c2c2cc7; /* Color del texto al pasar el mouse */
+  }
 
 .formBx.active .signinForm
 {

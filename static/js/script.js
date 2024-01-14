@@ -20,3 +20,17 @@ setTimeout(() => {
         alert.style.display = 'none';
     });
 }, 3000); // Cambia este valor (en milisegundos) según el tiempo que desees que permanezcan los mensajes antes de desaparecer
+
+document.addEventListener("DOMContentLoaded", function() {
+    var jadfostElement = document.getElementById("jadfost");
+    jadfostElement.addEventListener("click", function() {
+    window.location.href = 'https://github.com/jadfost';
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    var jadfostElement = document.getElementById("jadfost2");
+    jadfostElement.addEventListener("click", function() {
+    window.location.href = 'https://github.com/jadfost';
+    });
+});
