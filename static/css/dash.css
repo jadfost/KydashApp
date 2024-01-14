@@ -280,11 +280,27 @@ body {
   justify-content: center;
 }
 
+/* Agrega una regla de animación para el remolino */
+@keyframes swirl {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .content nav .profile img {
   width: 36px;
   height: 36px;
   object-fit: cover;
   border-radius: 50%;
+  transition: transform 0.5s ease; /* Agrega una transición suave para el transform */
+}
+
+/* Aplica la animación de remolino al pasar el mouse sobre la imagen */
+.content nav .profile img:hover {
+  animation: swirl 1s linear infinite; /* Aplica la animación de remolino */
 }
 
 .content nav .theme-toggle {
