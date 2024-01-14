@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{{ url_for('static', filename = 'css/dash.css') }}" rel="stylesheet" />
+    <title>Kydash Co</title>
+    <!-- Agrega el favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+    {% include 'util/sidebar.html' %}
+
+    <!-- Main Content -->
+    <div class="content">
+        {% include 'util/nav.html' %}
+    
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>Liquidacion</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">
+                            Analitica
+                            </a></li>
+                        /
+                        <li><a href="#" class="active">Liquidacion</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="report">
+                    <i class='bx bx-cloud-download'></i>
+                    <span>Download CSV</span>
+                </a>
+            </div>
+
+            <!-- Insights -->
+            <ul class="insights">
+                <li>
+                    <i class='bx bx-calendar-check'></i>
+                    <span class="info">
+                        <h3>
+                            $9.456,742
+                        </h3>
+                        <p>Total Cuotas Ventas</p>
+                    </span>
+                </li>
+                <li><i class='bx bx-dollar-circle'></i>
+                    <span class="info">
+                        <h3>
+                            $6.456,742
+                        </h3>
+                        <p>Resultados Ventas</p>
+                    </span>
+                </li>
+            </ul>
+            <!-- End of Insights -->
+
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-receipt'></i>
+                        <h3>Top ejecutivos Tradicional</h3>
+                        <i class='bx bx-filter'></i>
+                        <i class='bx bx-search'></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ejecutivo</th>
+                                <th>Fecha Ultimo Corte</th>
+                                <th>Resultado Ventas</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="{{ url_for('static', filename = 'images/profile.jpg') }}">
+                                    <p>Jared</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td>$6.456,742</td>
+                                <td><span class="status completed">Completado</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="{{ url_for('static', filename = 'images/profile.jpg') }}">
+                                    <p>Jared</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td>$6.456,742</td>
+                                <td><span class="status pending">Pendiente</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="{{ url_for('static', filename = 'images/profile.jpg') }}">
+                                    <p>Jared</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td>$6.456,742</td>
+                                <td><span class="status process">Procesando</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
+</body>
+
+</html>

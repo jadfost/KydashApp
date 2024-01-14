@@ -33,6 +33,9 @@
         <li {% if request.endpoint == 'dashboard_bp.dashboard' %}class="active"{% endif %}>
             <a href="{{ url_for('dashboard_bp.dashboard') }}"><i class='bx bxs-dashboard'></i>Dashboard</a>
         </li>
+        <li {% if request.endpoint == 'liquidacion_bp.liquidacion' %}class="active"{% endif %}>
+            <a href="{{ url_for('liquidacion_bp.liquidacion') }}"><i class='bx bx-money'></i>Liquidaciones</a>
+        </li>
         <li {% if request.endpoint == 'novedad_bp.novedades' %}class="active"{% endif %}>
             <a href="{{ url_for('novedad_bp.novedades') }}"><i class='bx bx-analyse'></i>Novedades</a>
         </li>
