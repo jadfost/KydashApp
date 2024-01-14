@@ -4,3 +4,4 @@ numpy
 openpyxl
 pymongo
 python-dotenv
+Flask-Session
