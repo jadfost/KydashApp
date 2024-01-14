@@ -35,8 +35,8 @@
           <form method="post" action="{{ url_for('auth_bp.login') }}">
             <img src="{{ url_for('static', filename = 'images/image.png') }}" alt="Descripción de la imagen" />
             <h3>Iniciar Sesion</h3>
-            <input type="text" name="username" placeholder="Usuario" />
-            <input type="password" name="password" placeholder="Contraseña" />
+            <input type="text" name="username" placeholder="Usuario" required />
+            <input type="password" name="password" placeholder="Contraseña" required/>
             <input type="submit" value="Acceder" />
           </form>
           <h3>© JadFost</h3>
@@ -44,12 +44,13 @@
 
         <div class="form signupForm">
           <form method="post" action="{{ url_for('auth_bp.register') }}">
-            <img src="{{ url_for('static', filename = 'images/image.png') }}" alt="Descripción de la imagen" />
+            <img src="{{ url_for('static', filename='images/image.png') }}" alt="Descripción de la imagen" />
             <h3>Registrarse</h3>
-            <input type="text" name="username" placeholder="Usuario" />
-            <input type="password" name="password" placeholder="Contraseña" />
+            <input type="text" name="username" placeholder="Usuario" required />
+            <input type="password" name="password" placeholder="Contraseña" required />
+            <input type="password" name="admin_code" placeholder="Código Admin" required />
             <input type="submit" value="Crear" />
-          </form>
+          </form>        
           <h3>© JadFost</h3>
         </div>
       </div>
