@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_session import Session
 from datetime import timedelta
+from routes.db.db import get_users_collection
 
 auth_bp = Blueprint('auth_bp', __name__)
 SESSION_TYPE = 'filesystem'
@@ -19,10 +20,7 @@ auth_bp.config = dict(
 # Inicializar la extensión de sesión
 Session(auth_bp)
 
-# Conectar a MongoDB
-client = MongoClient('mongodb+srv://jadfost:Dorothy1ove@cluster0.2ixoaaa.mongodb.net/?retryWrites=true&w=majority')
-db = client['kydash']
-users_collection = db['usuarios']
+users_collection = get_users_collection()
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
