@@ -3,21 +3,15 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_session import Session
-from datetime import timedelta
 from routes.db.db import get_users_collection
+from routes.db.session import session_bp
 
 auth_bp = Blueprint('auth_bp', __name__)
-SESSION_TYPE = 'filesystem'
 
-# Configuración de la extensión de sesión
-auth_bp.config = dict(
-    SESSION_PERMANENT=True,
-    SESSION_USE_SIGNER=True,
-    SESSION_KEY_PREFIX='kydash_',
-    PERMANENT_SESSION_LIFETIME=timedelta(hours=3),
-)
+# Usa la extensión de sesión del módulo de sesión
+auth_bp.config = session_bp.config
 
-# Inicializar la extensión de sesión
+# Inicializa la extensión de sesión en este módulo
 Session(auth_bp)
 
 users_collection = get_users_collection()

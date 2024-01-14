@@ -5,9 +5,13 @@ from routes.db.auth import auth_bp
 from routes.dashboard import dashboard_bp
 from routes.profile import profile_bp
 from routes.liquidaciones import liquidacion_bp
+from routes.db.session import session_bp 
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+
+# Registra la extensión de sesión
+app.register_blueprint(session_bp)
 
 @app.route('/')
 def index():
