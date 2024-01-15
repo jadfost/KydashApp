@@ -55,16 +55,23 @@
                         <h3>Filtros</h3>
                     </div>
                     <div class="dropdown">
-                        <select name="anocanal">
-                            <option value="2000">2023</option>
-                        </select>                        
-                        <select name="mescanal">
-                            <option value="enero0">Enero</option>
+                        <select name="anocanal" id="anocanal">
+                            {% for ano in anos %}
+                                <option value="{{ ano }}">{{ ano }}</option>
+                            {% endfor %}
                         </select>
-                        <select name="medicioncanal">
-                            <option value="tat - focalizado">TAT - Focalizado</option>
+                        <select name="mescanal" id="mescanal">
+                            {% for mes in meses %}
+                                <option value="{{ mes }}">{{ mes }}</option>
+                            {% endfor %}
                         </select>
-                    </div>
+                        <select name="medicioncanal" id="medicioncanal">
+                            {% for canal in canales_medicion %}
+                                <option value="{{ canal }}">{{ canal }}</option>
+                            {% endfor %}
+                        </select>
+                        <button id="applyFiltersBtn">Aplicar Filtros</button>
+                    </div>                                        
                 </div>
             </div>
 
@@ -74,7 +81,7 @@
                     <i class='bx bx-calendar-check'></i>
                     <span class="info">
                         <h3>
-                            {{ '{:,.0f}'.format(participantes|sum(attribute='CUOTA VENTA TOTAL')) }}
+                            <h3>{{ '{:,.0f}'.format(total_cuotas) }}</h3>
                         </h3>
                         <p>Total Cuotas Ventas</p>
                     </span>
@@ -83,7 +90,7 @@
                     <i class='bx bx-dollar-circle'></i>
                     <span class="info">
                         <h3>
-                            {{ '{:,.0f}'.format(participantes|sum(attribute='RESULTADOS VENTA TOTAL')) }}
+                            <h3>{{ '{:,.0f}'.format(total_resultados) }}</h3>
                         </h3>
                         <p>Resultados Ventas</p>
                     </span>
@@ -92,7 +99,7 @@
                     <i class='bx bx-line-chart'></i>
                     <span class="info">
                         <h3>
-                            {{ '{:,.0f}'.format(participantes|sum(attribute='TOTAL BANDERINES')) }}
+                            <h3>{{ '{:,.0f}'.format(total_banderines) }}</h3>
                         </h3>
                         <p>Total Banderines</p>
                     </span>
@@ -135,7 +142,7 @@
         </main>
     </div>
 
-    <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/liquidacion.js') }}"></script>
 </body>
 
 </html>
