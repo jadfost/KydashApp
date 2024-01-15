@@ -23,18 +23,49 @@
             <div class="header">
                 <div class="left">
                     <h1>Liquidacion</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="#">
-                            Analitica
-                            </a></li>
-                        /
-                        <li><a href="#" class="active">Liquidacion</a></li>
-                    </ul>
                 </div>
                 <a href="#" class="report">
                     <i class='bx bx-cloud-download'></i>
-                    <span>Download CSV</span>
+                    <span>Descargar Informe</span>
                 </a>
+            </div>
+
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-receipt'></i>
+                        <h3>Buscar</h3>
+                    </div>
+                    <div class="dropdown">
+                        <select name="canal">
+                            <option value="tradicional1">Tradicional</option>
+                            <option value="panaleras1">Pañaleras</option>
+                        </select> 
+                        <form action="#">
+                            <div class="form-search">
+                                <input type="search" placeholder="Buscar...">
+                                <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-filter'></i>
+                        <h3>Filtros</h3>
+                    </div>
+                    <div class="dropdown">
+                        <select name="anocanal">
+                            <option value="2000">2023</option>
+                        </select>                        
+                        <select name="mescanal">
+                            <option value="enero0">Enero</option>
+                        </select>
+                        <select name="medicioncanal">
+                            <option value="tat - focalizado">TAT - Focalizado</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <!-- Insights -->
@@ -74,7 +105,6 @@
                     <div class="header">
                         <i class='bx bx-receipt'></i>
                         <h3>Participantes</h3>
-                        <i class='bx bx-filter'></i>
                         <i class='bx bx-search'></i>
                     </div>
                     <table>

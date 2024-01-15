@@ -581,6 +581,39 @@ body {
   margin-bottom: 20px;
 }
 
+.content main .bottom-data .dropdown .form-search {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+
+.content main .bottom-data .form-search input {
+  flex-grow: 1;
+  padding: 0 16px;
+  height: 100%;
+  border: none;
+  background: var(--grey);
+  border-radius: 36px 0 0 36px;
+  outline: none;
+  width: 100%;
+  color: var(--dark);
+}
+
+.content main .bottom-data .form-search button {
+  width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  color: var(--light);
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
+}
+
 .content main .bottom-data .dropdown label {
   margin-right: 10px;
 }
@@ -599,7 +632,7 @@ body {
   background: #1976d2; 
   background-size: 400% 400%;
   margin-right: 10px;
-  width: 120px;
+  width: 170px;
   text-align: center;
 }
 
