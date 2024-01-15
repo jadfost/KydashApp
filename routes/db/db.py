@@ -9,3 +9,7 @@ def get_db():
 def get_users_collection():
     db = get_db()
     return db['usuarios']
+
+def get_tradicional_collection():
+    db = get_db()
+    return db['tradicional']

@@ -43,17 +43,27 @@
                     <i class='bx bx-calendar-check'></i>
                     <span class="info">
                         <h3>
-                            $9.456,742
+                            {{ '{:,.0f}'.format(participantes|sum(attribute='CUOTA VENTA TOTAL')) }}
                         </h3>
                         <p>Total Cuotas Ventas</p>
                     </span>
                 </li>
-                <li><i class='bx bx-dollar-circle'></i>
+                <li>
+                    <i class='bx bx-dollar-circle'></i>
                     <span class="info">
                         <h3>
-                            $6.456,742
+                            {{ '{:,.0f}'.format(participantes|sum(attribute='RESULTADOS VENTA TOTAL')) }}
                         </h3>
                         <p>Resultados Ventas</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bx-line-chart'></i>
+                    <span class="info">
+                        <h3>
+                            {{ '{:,.0f}'.format(participantes|sum(attribute='TOTAL BANDERINES')) }}
+                        </h3>
+                        <p>Total Banderines</p>
                     </span>
                 </li>
             </ul>
@@ -63,47 +73,31 @@
                 <div class="orders">
                     <div class="header">
                         <i class='bx bx-receipt'></i>
-                        <h3>Top ejecutivos Tradicional</h3>
+                        <h3>Participantes</h3>
                         <i class='bx bx-filter'></i>
                         <i class='bx bx-search'></i>
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <th>Ejecutivo</th>
-                                <th>Fecha Ultimo Corte</th>
-                                <th>Resultado Ventas</th>
-                                <th>Estado</th>
+                                <th>Nombres de Participante</th>
+                                <th>Cuota Venta Total</th>
+                                <th>Resultado Venta Total</th>
+                                <th>Total Banderines</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for participante in participantes %}
                             <tr>
                                 <td>
-                                    <img src="{{ url_for('static', filename = 'images/profile.jpg') }}">
-                                    <p>Jared</p>
+                                    <img src="{{ url_for('static', filename='images/profile.jpg') }}">
+                                    {{ participante['NOMBRES Y APELLIDOS PARTICIPANTE'] }}
                                 </td>
-                                <td>14-08-2023</td>
-                                <td>$6.456,742</td>
-                                <td><span class="status completed">Completado</span></td>
+                                <td>{{ '{:,.0f}'.format(participante['CUOTA VENTA TOTAL']|float) }}</td>
+                                <td>{{ '{:,.0f}'.format(participante['RESULTADOS VENTA TOTAL']|float) }}</td>
+                                <td>{{ '{:,.0f}'.format(participante['TOTAL BANDERINES']|float) }}</td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <img src="{{ url_for('static', filename = 'images/profile.jpg') }}">
-                                    <p>Jared</p>
-                                </td>
-                                <td>14-08-2023</td>
-                                <td>$6.456,742</td>
-                                <td><span class="status pending">Pendiente</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="{{ url_for('static', filename = 'images/profile.jpg') }}">
-                                    <p>Jared</p>
-                                </td>
-                                <td>14-08-2023</td>
-                                <td>$6.456,742</td>
-                                <td><span class="status process">Procesando</span></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
