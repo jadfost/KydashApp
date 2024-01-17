@@ -59,3 +59,4 @@ Copyright (c) [2024] [JadFost]
 ## Authors
 
 * **JadFost** - *Lead Developer* - [JadFost](https://github.com/jadfost)
+* **David Nieves** - *Machine Learning* - [DavAnalyst](https://github.com/DavAnalyst)
