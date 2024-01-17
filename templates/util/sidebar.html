@@ -39,6 +39,9 @@
         <li {% if request.endpoint == 'novedad_bp.novedades' %}class="active"{% endif %}>
             <a href="{{ url_for('novedad_bp.novedades') }}"><i class='bx bx-analyse'></i>Novedades</a>
         </li>
+        <li {% if request.endpoint == 'cuotas_bp.cuotas' %}class="active"{% endif %}>
+            <a href="{{ url_for('cuotas_bp.cuotas') }}"><i class='bx bx-chart'></i>Cuotas Prediccion</a>
+        </li>
     </ul>    
     <ul class="side-menu">
         <li>

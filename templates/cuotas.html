@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{{ url_for('static', filename = 'css/dash.css') }}" rel="stylesheet" />
+    <title>Kydash Co</title>
+    <!-- Agrega el favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+    {% include 'util/sidebar.html' %}
+    <!-- Main Content -->
+    <div class="content">
+        {% include 'util/nav.html' %}
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>Cuotas</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="{{ url_for('dashboard_bp.dashboard') }}">
+                                Dashboard
+                            </a></li>
+                        /
+                        <li><a href="{{ url_for('profile_bp.profile') }}" class="active">Perfil</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="report">
+                    <i class='bx bx-history'></i>
+                    <span>Historial de Cambios</span>
+                </a>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
+</body>
+
+</html>
