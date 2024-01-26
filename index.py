@@ -7,6 +7,7 @@ from routes.profile import profile_bp
 from routes.liquidaciones import liquidacion_bp
 from routes.db.session import session_bp 
 from routes.cuotas import cuotas_bp
+from routes.mecanica import mecanica_bp
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -28,6 +29,7 @@ app.register_blueprint(dashboard_bp, url_prefix='/dashboard')
 app.register_blueprint(liquidacion_bp, url_prefix='/liquidacion')
 app.register_blueprint(profile_bp, url_prefix='/profile')
 app.register_blueprint(cuotas_bp, url_prefix='/cuotas')
+app.register_blueprint(mecanica_bp, url_prefix='/mecanica')
 
 if __name__ == '__main__':
     app.run(debug=True)
