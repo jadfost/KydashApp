@@ -600,7 +600,7 @@ body {
 }
 
 .content main .bottom-data .form-search button {
-  width: 80px;
+  width: 180px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -630,6 +630,24 @@ body {
   border-radius: 36px 36px 36px 36px;
   cursor: pointer;
   background: #1976d2; 
+  background-size: 400% 400%;
+  margin-right: 10px;
+  width: 170px;
+  text-align: center;
+}
+
+.content main .bottom-data .dropdown button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light);
+  padding: 6px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-radius: 36px 36px 36px 36px;
+  cursor: pointer;
+  background: #feaf0a; 
   background-size: 400% 400%;
   margin-right: 10px;
   width: 170px;
