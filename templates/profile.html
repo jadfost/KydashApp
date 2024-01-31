@@ -14,28 +14,44 @@
 
 <body>
     {% include 'util/sidebar.html' %}
+
     <!-- Main Content -->
-    <div class="content">
-        {% include 'util/nav.html' %}
-        <main>
-            <div class="header">
-                <div class="left">
-                    <h1>Mi Perfil</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="{{ url_for('dashboard_bp.dashboard') }}">
-                                Dashboard
-                            </a></li>
-                        /
-                        <li><a href="{{ url_for('profile_bp.profile') }}" class="active">Perfil</a></li>
-                    </ul>
-                </div>
-                <a href="#" class="report">
-                    <i class='bx bx-history'></i>
-                    <span>Historial de Cambios</span>
-                </a>
+<div class="content">
+    {% include 'util/nav.html' %}
+
+    <main>
+        <div class="header">
+            <div class="left">
+                <h1>Mi Perfil</h1>
+                <ul class="breadcrumb">
+                    <li><a href="#">Dashboard</a></li>
+                    /
+                    <li><a href="#" class="active">Mi Perfil</a></li>
+                </ul>
             </div>
-        </main>
-    </div>
+            <a href="#" class="report">
+                <i class='bx bx-edit'></i>
+                <span>Editar Mi Perfil</span>
+            </a>
+        </div>
+
+        <!-- Insights -->
+        <ul class="insights">
+            <li>
+                <img src="{{ url_for('static', filename = 'images/profile.jpg') }}">
+                <span class="info">
+                    <h3>
+                        <p>{{ user.name }} {{ user.lastname }}</p>
+                    </h3>
+                    <p>Usuario: {{ user.username }}</p>
+                    <p>E-mail: {{ user.email }}</p>
+                    <p>Rol: {{ user.rol }}</p>
+                </span>
+            </li>
+        </ul>
+        <!-- End of Insights -->
+    </main>
+</div>
     <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
 </body>
 

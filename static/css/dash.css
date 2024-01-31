@@ -72,8 +72,10 @@ body {
 
 .sidebar .logo {
   display: flex;
-  align-items: center; /* Centra verticalmente */
-  justify-content: center; /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
+  justify-content: center;
+  /* Centra horizontalmente */
   height: 136px;
 }
 
@@ -181,7 +183,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.sidebar.close ~ .content {
+.sidebar.close~.content {
   width: calc(100% - 60px);
   left: 60px;
 }
@@ -285,6 +287,7 @@ body {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -295,12 +298,14 @@ body {
   height: 36px;
   object-fit: cover;
   border-radius: 50%;
-  transition: transform 0.5s ease; /* Agrega una transición suave para el transform */
+  transition: transform 0.5s ease;
+  /* Agrega una transición suave para el transform */
 }
 
 /* Aplica la animación de remolino al pasar el mouse sobre la imagen */
 .content nav .profile img:hover {
-  animation: swirl 1s linear infinite; /* Aplica la animación de remolino */
+  animation: swirl 1s linear infinite;
+  /* Aplica la animación de remolino */
 }
 
 .content nav .theme-toggle {
@@ -325,7 +330,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.content nav #theme-toggle:checked + .theme-toggle::before {
+.content nav #theme-toggle:checked+.theme-toggle::before {
   left: calc(100% - (25px - 4px) - 2px);
 }
 
@@ -400,6 +405,14 @@ body {
   cursor: pointer;
 }
 
+.content main .insights li img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+
 .content main .insights li .bx {
   width: 80px;
   height: 80px;
@@ -449,7 +462,7 @@ body {
   color: var(--dark);
 }
 
-.content main .bottom-data > div {
+.content main .bottom-data>div {
   border-radius: 20px;
   background: var(--light);
   padding: 24px;
@@ -479,66 +492,70 @@ body {
 }
 
 .content main .bottom-data button {
-    width: 80px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--primary);
-    color: var(--light);
-    font-size: 18px;
-    border: none;
-    outline: none;
-    border-radius: 0 36px 36px 0;
-    cursor: pointer;
-  }
-
-  .content main .bottom-data .form-input button {
-    width: 80px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--primary);
-    color: var(--light);
-    font-size: 18px;
-    border: none;
-    outline: none;
-    border-radius: 0 36px 36px 0;
-    cursor: pointer;
-  }
-
-  @keyframes ripple {
-    0% {
-        background-position: 0% 0%;
-    }
-    100% {
-        background-position: 400% 0%;
-    }
+  width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  color: var(--light);
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
 }
 
 .content main .bottom-data .form-input button {
-    width: 80px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--light);
-    font-size: 18px;
-    border: none;
-    outline: none;
-    border-radius: 0 36px 36px 0;
-    cursor: pointer;
-    background: linear-gradient(45deg, #6a7ef0, #feaf0a, #7c7ef1, #feaf0a); /* Colores del degradado */
-    background-size: 400% 400%;
-    animation: ripple 10s linear infinite; /* Aplica la animación al botón */
+  width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  color: var(--light);
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
+}
+
+@keyframes ripple {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 400% 0%;
+  }
+}
+
+.content main .bottom-data .form-input button {
+  width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light);
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
+  background: linear-gradient(45deg, #6a7ef0, #feaf0a, #7c7ef1, #feaf0a);
+  /* Colores del degradado */
+  background-size: 400% 400%;
+  animation: ripple 10s linear infinite;
+  /* Aplica la animación al botón */
 }
 
 .content main .bottom-data .flex {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 20px; /* Espacio entre columnas */
+  gap: 20px;
+  /* Espacio entre columnas */
 }
 
 .content main .bottom-data .drop-container {
@@ -563,16 +580,16 @@ body {
 }
 
 .content main .bottom-data .drop-container input[type="file"] {
-    color: #1976d2; 
-    border-radius: 10px; 
-    border: 1px solid #1976d2; 
-    padding: 8px 16px;
-    cursor: pointer; 
-    transition: all 0.3s ease; 
+  color: #1976d2;
+  border-radius: 10px;
+  border: 1px solid #1976d2;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .content main .bottom-data .drop-container input[type="file"]:hover {
-    background: #1976d20e; 
+  background: #1976d20e;
 }
 
 .content main .bottom-data .dropdown {
@@ -629,7 +646,7 @@ body {
   outline: none;
   border-radius: 36px 36px 36px 36px;
   cursor: pointer;
-  background: #1976d2; 
+  background: #1976d2;
   background-size: 400% 400%;
   margin-right: 10px;
   width: 170px;
@@ -647,7 +664,7 @@ body {
   outline: none;
   border-radius: 36px 36px 36px 36px;
   cursor: pointer;
-  background: #feaf0a; 
+  background: #feaf0a;
   background-size: 400% 400%;
   margin-right: 10px;
   width: 170px;
@@ -795,8 +812,8 @@ body {
     border-radius: 0 36px 36px 0;
   }
 
-  .content nav form.show ~ .notif,
-  .content nav form.show ~ .profile {
+  .content nav form.show~.notif,
+  .content nav form.show~.profile {
     display: none;
   }
 
