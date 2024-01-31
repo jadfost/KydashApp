@@ -50,6 +50,43 @@
             </li>
         </ul>
         <!-- End of Insights -->
+
+        <div class="bottom-data">
+            <div class="orders">
+                <div class="header">
+                    <i class='bx bx-edit'></i>
+                    <h3>Editar Mi Perfil</h3>
+                    <i class='bx bx-filter'></i>
+                </div>
+
+                <!-- Edit Profile Form -->
+                <form method="POST" action="{{ url_for('profile_bp.edit_profile') }}">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>E-Mail</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="status completed">Activo</span></td>
+                            <td>{{ user.username }}</td>
+                            <td><input type="text" name="new_name" value="{{ user.name }}"></td>
+                            <td><input type="text" name="new_lastname" value="{{ user.lastname }}"></td>
+                            <td><input type="email" name="new_email" value="{{ user.email }}"></td>
+                            <td>
+                                <button type="submit">Guardar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
 </div>
     <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
