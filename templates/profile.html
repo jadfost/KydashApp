@@ -58,33 +58,25 @@
                     <h3>Editar Mi Perfil</h3>
                     <i class='bx bx-filter'></i>
                 </div>
-
-                <!-- Edit Profile Form -->
-                <form method="POST" action="{{ url_for('profile_bp.edit_profile') }}">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Estado</th>
-                            <th>Usuario</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>E-Mail</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="status completed">Activo</span></td>
-                            <td>{{ user.username }}</td>
-                            <td><input type="text" name="new_name" value="{{ user.name }}"></td>
-                            <td><input type="text" name="new_lastname" value="{{ user.lastname }}"></td>
-                            <td><input type="email" name="new_email" value="{{ user.email }}"></td>
-                            <td>
-                                <button type="submit">Guardar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="dropdown">
+                    <form method="POST" action="{{ url_for('profile_bp.edit_profile') }}">
+                        <div class="form-search">
+                            <label for="new_name">Nuevo Nombre:</label>
+                            <input type="text" name="new_name" id="new_name" value="{{ user.name }}">
+                            
+                            <label for="new_lastname">Nuevo Apellido:</label>
+                            <input type="text" name="new_lastname" id="new_lastname" value="{{ user.lastname }}">
+                        </div>
+                        
+                        <div class="form-search">
+                            <label for="new_email">Nuevo E-Mail:</label>
+                            <input type="email" name="new_email" id="new_email" value="{{ user.email }}">
+                            
+                            <button class="search-btn" type="submit"><i class='bx bx-save'></i> Guardar</button>
+                        </div>
+                    </form>
+                    
+                </div>
             </div>
         </div>
     </main>
