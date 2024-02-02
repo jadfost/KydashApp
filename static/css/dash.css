@@ -299,13 +299,10 @@ body {
   object-fit: cover;
   border-radius: 50%;
   transition: transform 0.5s ease;
-  /* Agrega una transición suave para el transform */
 }
 
-/* Aplica la animación de remolino al pasar el mouse sobre la imagen */
 .content nav .profile img:hover {
   animation: swirl 1s linear infinite;
-  /* Aplica la animación de remolino */
 }
 
 .content nav .theme-toggle {
@@ -388,6 +385,32 @@ body {
   font-weight: 500;
 }
 
+.content main .header .logout {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 36px;
+  background: #f9bc21;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  font-weight: 500;
+}
+
+.content main .header .logout:hover {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 36px;
+  background: #ffca46;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  font-weight: 500;
+}
+
 .content main .insights {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -405,13 +428,17 @@ body {
   cursor: pointer;
 }
 
-.content main .insights li img {
-  width: 190px;
-  height: 190px;
+.content main .insights li .coin {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 20px;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
+.content main .insights li .coin:hover {
+  transform: scale(1.1);
+}
 
 .content main .insights li .bx {
   width: 80px;
@@ -447,6 +474,22 @@ body {
   font-size: 24px;
   font-weight: 600;
   color: var(--dark);
+}
+
+.content main .insights li .info .status {
+  height: 26px;
+  padding: 0 16px;
+  border-radius: 36px;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  font-weight: 500;
+  margin-top: 10px;
+  background: linear-gradient(45deg, #26ac21, #81f67d, #26ac21, #81f67d);
+  background-size: 400% 400%;
+  animation: ripple 10s linear infinite;
 }
 
 .content main .insights li .info p {
@@ -544,10 +587,8 @@ body {
   border-radius: 0 36px 36px 0;
   cursor: pointer;
   background: linear-gradient(45deg, #6a7ef0, #feaf0a, #7c7ef1, #feaf0a);
-  /* Colores del degradado */
   background-size: 400% 400%;
   animation: ripple 10s linear infinite;
-  /* Aplica la animación al botón */
 }
 
 .content main .bottom-data .flex {
@@ -628,15 +669,29 @@ body {
 }
 
 .content main .bottom-data .dropdown .form-search button {
-  width: 25%;
-  padding: 10px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 36px;
   background: var(--primary);
   color: var(--light);
-  font-size: 18px;
-  border: none;
-  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  font-weight: 500;
+}
+
+.content main .bottom-data .dropdown .form-search button:hover {
+  height: 36px;
+  padding: 0 16px;
   border-radius: 36px;
-  cursor: pointer;
+  background: #2c8cec;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  font-weight: 500;
 }
 
 /* Add styles for responsiveness */

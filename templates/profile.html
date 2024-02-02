@@ -16,70 +16,75 @@
     {% include 'util/sidebar.html' %}
 
     <!-- Main Content -->
-<div class="content">
-    {% include 'util/nav.html' %}
+    <div class="content">
+        {% include 'util/nav.html' %}
 
-    <main>
-        <div class="header">
-            <div class="left">
-                <h1>Mi Perfil</h1>
-                <ul class="breadcrumb">
-                    <li><a href="#">Dashboard</a></li>
-                    /
-                    <li><a href="#" class="active">Mi Perfil</a></li>
-                </ul>
-            </div>
-            <a href="#" class="report">
-                <i class='bx bx-edit'></i>
-                <span>Editar Mi Perfil</span>
-            </a>
-        </div>
-
-        <!-- Insights -->
-        <ul class="insights">
-            <li>
-                <img src="{{ url_for('static', filename = 'images/profile.jpg') }}">
-                <span class="info">
-                    <h3>
-                        <p>{{ user.name }} {{ user.lastname }}</p>
-                    </h3>
-                    <p>Usuario: {{ user.username }}</p>
-                    <p>E-mail: {{ user.email }}</p>
-                    <p>Rol: {{ user.rol }}</p>
-                </span>
-            </li>
-        </ul>
-        <!-- End of Insights -->
-
-        <div class="bottom-data">
-            <div class="orders">
-                <div class="header">
-                    <i class='bx bx-edit'></i>
-                    <h3>Editar Mi Perfil</h3>
-                    <i class='bx bx-filter'></i>
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>Mi Perfil</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">Dashboard</a></li>
+                        /
+                        <li><a href="#" class="active">Mi Perfil</a></li>
+                    </ul>
                 </div>
-                <div class="dropdown">
-                    <form method="POST" action="{{ url_for('profile_bp.edit_profile') }}">
-                        <div class="form-search">
-                            <label for="new_name">Nuevo Nombre:</label>
-                            <input type="text" name="new_name" id="new_name" value="{{ user.name }}">
-                            
-                            <label for="new_lastname">Nuevo Apellido:</label>
-                            <input type="text" name="new_lastname" id="new_lastname" value="{{ user.lastname }}">
-                        </div>
-                        
-                        <div class="form-search">
-                            <label for="new_email">Nuevo E-Mail:</label>
-                            <input type="email" name="new_email" id="new_email" value="{{ user.email }}">
-                            
-                            <button class="search-btn" type="submit"><i class='bx bx-save'></i> Guardar</button>
-                        </div>
-                    </form>
+                <a href="{{ url_for('auth_bp.logout') }}" class="logout">
+                    <i class='bx bx-exit'></i>
+                    <span>Cerrar Sesion</span>
+                </a>
+            </div>
+
+            <!-- Insights -->
+            <ul class="insights">
+                <li>
+                    <a class="profile">
+                        <img class="coin" src="{{ url_for('static', filename = 'images/profile.jpg') }}">
+                    </a>
+                    <span class="info">
+                        <h3>
+                            <p>{{ user.name }} {{ user.lastname }}</p>
+                        </h3>
+                        <p>Usuario: {{ user.username }}</p>
+                        <p>E-mail: {{ user.email }}</p>
+                        <p>Rol: {{ user.rol }}</p>
+                        <a href="#" class="status">
+                            <span>Activo</span>
+                        </a>
+                    </span>
+                </li>
+            </ul>
+            <!-- End of Insights -->
+
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-edit'></i>
+                        <h3>Editar Mi Perfil</h3>
+                        <i class='bx bx-filter'></i>
+                    </div>
+                    <div class="dropdown">
+                        <form method="POST" action="{{ url_for('profile_bp.edit_profile') }}">
+                            <div class="form-search">
+                                <label for="new_name">Nuevo Nombre:</label>
+                                <input type="text" name="new_name" id="new_name" value="{{ user.name }}">
+
+                                <label for="new_lastname">Nuevo Apellido:</label>
+                                <input type="text" name="new_lastname" id="new_lastname" value="{{ user.lastname }}">
+                            </div>
+
+                            <div class="form-search">
+                                <label for="new_email">Nuevo E-Mail:</label>
+                                <input type="email" name="new_email" id="new_email" value="{{ user.email }}">
+
+                                <button class="search-btn" type="submit"><i class='bx bx-save'></i>Guardar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
     <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
 </body>
 
