@@ -13,12 +13,16 @@
 </head>
 
 <body>
+    {% include 'util/layout.html' %}
+
+    {% block content %}
+
     {% include 'util/sidebar.html' %}
 
     <!-- Main Content -->
     <div class="content">
         {% include 'util/nav.html' %}
-    
+
         <main>
             <div class="header">
                 <div class="left">
@@ -171,13 +175,10 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
-
         </main>
-
     </div>
-
+    {% endblock %}
     <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
 </body>
 

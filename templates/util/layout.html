@@ -1,0 +1,30 @@
+<!-- layout.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{{ url_for('static', filename = 'css/dash.css') }}" rel="stylesheet" />
+</head>
+<body>
+    <a id="loader">
+        <img src="{{ url_for('static', filename='images/zyro-image.png') }}" alt="Descripción de la imagen" />
+    </a>
+
+    <!-- Contenido específico de cada página se incluirá aquí -->
+    {% block content %}{% endblock %}
+
+    <!-- Scripts comunes pueden ir aquí -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("loader").style.display = "none";
+        });
+
+        // Mostrar el loader al iniciar una nueva carga de página
+        document.addEventListener("click", function (event) {
+            if (event.target.tagName === "A" && event.target.getAttribute("href")) {
+                document.getElementById("loader").style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

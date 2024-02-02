@@ -22,6 +22,48 @@
   font-family: "Poppins", sans-serif;
 }
 
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+#loader img {
+  max-width: 80px;
+  max-height: 80px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1); /* Ajuste de escala inicial */
+  animation: heartbeat 1.5s ease-in-out infinite; /* Animación de palpitar */
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .bx {
   font-size: 1.7rem;
 }
@@ -642,9 +684,11 @@ body {
 .content main .bottom-data .dropdown form {
   display: flex;
   flex-direction: column;
-  width: 80%; 
-  max-width: 990px; /* Set a max-width if you want to limit the width */
-  margin: 0 auto; /* Center the form within its container */
+  width: 80%;
+  max-width: 990px;
+  /* Set a max-width if you want to limit the width */
+  margin: 0 auto;
+  /* Center the form within its container */
 }
 
 .content main .bottom-data .dropdown .form-search {
@@ -662,7 +706,8 @@ body {
   padding: 10px;
   border: none;
   background: var(--grey);
-  border-radius: 36px; /* Make it a circle */
+  border-radius: 36px;
+  /* Make it a circle */
   outline: none;
   color: var(--dark);
   margin-right: 15px;

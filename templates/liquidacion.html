@@ -13,12 +13,16 @@
 </head>
 
 <body>
+    {% include 'util/layout.html' %}
+
+    {% block content %}
+
     {% include 'util/sidebar.html' %}
 
     <!-- Main Content -->
     <div class="content">
         {% include 'util/nav.html' %}
-    
+
         <main>
             <div class="header">
                 <div class="left">
@@ -40,7 +44,7 @@
                         <select name="canal">
                             <option value="tradicional1">Tradicional</option>
                             <option value="panaleras1">Pañaleras</option>
-                        </select> 
+                        </select>
                         <form action="#">
                             <div class="form-search">
                                 <input type="search" placeholder="Buscar...">
@@ -57,21 +61,21 @@
                     <div class="dropdown">
                         <select name="anocanal" id="anocanal">
                             {% for ano in anos %}
-                                <option value="{{ ano }}">{{ ano }}</option>
+                            <option value="{{ ano }}">{{ ano }}</option>
                             {% endfor %}
                         </select>
                         <select name="mescanal" id="mescanal">
                             {% for mes in meses %}
-                                <option value="{{ mes }}">{{ mes }}</option>
+                            <option value="{{ mes }}">{{ mes }}</option>
                             {% endfor %}
                         </select>
                         <select name="medicioncanal" id="medicioncanal">
                             {% for canal in canales_medicion %}
-                                <option value="{{ canal }}">{{ canal }}</option>
+                            <option value="{{ canal }}">{{ canal }}</option>
                             {% endfor %}
                         </select>
                         <button id="applyFiltersBtn">Filtrar</button>
-                    </div>                                        
+                    </div>
                 </div>
             </div>
 
@@ -141,6 +145,7 @@
             </div>
         </main>
     </div>
+    {% endblock %}
 
     <script src="{{ url_for('static', filename = 'js/liquidacion.js') }}"></script>
 </body>

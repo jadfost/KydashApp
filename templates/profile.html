@@ -13,6 +13,10 @@
 </head>
 
 <body>
+    {% include 'util/layout.html' %}
+
+    {% block content %}
+
     {% include 'util/sidebar.html' %}
 
     <!-- Main Content -->
@@ -48,7 +52,7 @@
                         <p>Usuario: {{ user.username }}</p>
                         <p>E-mail: {{ user.email }}</p>
                         <p>Rol: {{ user.rol }}</p>
-                        <a href="#" class="status">
+                        <a class="status">
                             <span>Activo</span>
                         </a>
                     </span>
@@ -85,6 +89,7 @@
             </div>
         </main>
     </div>
+    {% endblock %}
     <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
 </body>
 

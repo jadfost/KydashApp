@@ -39,7 +39,7 @@ toggler.addEventListener('change', function () {
     }
 });
 
-window.onload = function() {
+window.onload = function () {
     const yearSelect = document.getElementById("anoTradiconal");
     const monthSelect = document.getElementById("mesTradiconal");
     const forms = document.querySelectorAll("[id^='formTradiconal']");
@@ -72,11 +72,11 @@ window.onload = function() {
         }
     }
 
-    yearSelect.addEventListener("change", function() {
+    yearSelect.addEventListener("change", function () {
         updateForms(yearSelect.value, monthSelect.value);
     });
 
-    monthSelect.addEventListener("change", function() {
+    monthSelect.addEventListener("change", function () {
         showForm(`formTradiconal${monthSelect.value.charAt(0).toUpperCase() + monthSelect.value.slice(1)}`);
     });
 
@@ -95,5 +95,3 @@ function mesPanalera() {
         document.getElementById("formPanaleroFebrero").style.display = "block";
     }
 }
-
-// LIQUIDACIONES -------------------------------------------------------
