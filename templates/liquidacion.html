@@ -41,10 +41,6 @@
                         <h3>Buscar</h3>
                     </div>
                     <div class="dropdown">
-                        <select name="canal">
-                            <option value="tradicional1">Tradicional</option>
-                            <option value="panaleras1">Pañaleras</option>
-                        </select>
                         <form action="#">
                             <div class="form-search">
                                 <input type="search" placeholder="Buscar...">
@@ -59,6 +55,10 @@
                         <h3>Filtros</h3>
                     </div>
                     <div class="dropdown">
+                        <select name="canal">
+                            <option value="tradicional1">Tradicional</option>
+                            <option value="panaleras1">Pañaleras</option>
+                        </select>
                         <select name="anocanal" id="anocanal">
                             {% for ano in anos %}
                             <option value="{{ ano }}">{{ ano }}</option>
