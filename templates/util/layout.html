@@ -21,7 +21,10 @@
 
         // Mostrar el loader al iniciar una nueva carga de página
         document.addEventListener("click", function (event) {
-            if (event.target.tagName === "A" && event.target.getAttribute("href")) {
+            if (event.target.tagName === "A" && event.target.getAttribute("href") === "#") {
+                // Prevent the default behavior only for anchor links with a hash (#)
+                event.preventDefault();
+            } else if (event.target.tagName === "A" && event.target.getAttribute("href")) {
                 document.getElementById("loader").style.display = "block";
             }
         });

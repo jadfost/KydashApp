@@ -16,14 +16,25 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         if (!sessionStorage.getItem('logoAnimated')) {
             $('.logo img').addClass('rotate-on-load');
             sessionStorage.setItem('logoAnimated', true);
         }
+
+        // Function to toggle the content of a specific group
+        function toggleGroupContent(groupId) {
+            $('.group-content').not('#' + groupId + '-content').hide(); // Hide other group content
+            $('#' + groupId + '-content').toggle(); // Toggle the visibility of the clicked group content
+        }
+
+        // Add click event listener to each group
+        $('.side-menu li a').on('click', function () {
+            var groupId = $(this).data('group-id');
+            toggleGroupContent(groupId);
+        });
     });
 </script>
-
 
 <div class="sidebar">
     <a href="{{ url_for('dashboard_bp.dashboard') }}" class="logo">
@@ -33,6 +44,13 @@
         <li {% if request.endpoint == 'dashboard_bp.dashboard' %}class="active"{% endif %}>
             <a href="{{ url_for('dashboard_bp.dashboard') }}"><i class='bx bxs-dashboard'></i>Dashboard</a>
         </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a class="colors" href="#" data-group-id="kymberly"><i class='bx bxs-coin-stack bx-tada-hover'></i>Kymberly</a>
+        </li>
+    </ul>
+    <ul class="side-menu group-content" id="kymberly-content">
         <li {% if request.endpoint == 'liquidacion_bp.liquidacion' %}class="active"{% endif %}>
             <a href="{{ url_for('liquidacion_bp.liquidacion') }}"><i class='bx bx-money'></i>Liquidaciones</a>
         </li>
@@ -42,10 +60,17 @@
         <li {% if request.endpoint == 'mecanica_bp.mecanica' %}class="active"{% endif %}>
             <a href="{{ url_for('mecanica_bp.mecanica') }}"><i class='bx bx-cog'></i>Mecanica</a>
         </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a class="colors" href="#" data-group-id="coltabaco"><i class='bx bxs-coin-stack bx-tada-hover'></i>Coltabaco</a>
+        </li>
+    </ul>
+    <ul class="side-menu group-content" id="coltabaco-content">
         <li {% if request.endpoint == 'cuotas_bp.cuotas' %}class="active"{% endif %}>
             <a href="{{ url_for('cuotas_bp.cuotas') }}"><i class='bx bx-chart'></i>Cuotas Prediccion</a>
         </li>
-    </ul>    
+    </ul>
     <ul class="side-menu">
         <li>
             <a href="{{ url_for('auth_bp.logout') }}" class="logout">
