@@ -28,10 +28,30 @@
             $('#' + groupId + '-content').toggle(); // Toggle the visibility of the clicked group content
         }
 
+        // Function to retrieve the active menu from localStorage
+        function getActiveMenu() {
+            return localStorage.getItem('activeMenu');
+        }
+
+        // Function to set the active menu to localStorage
+        function setActiveMenu(activeMenu) {
+            localStorage.setItem('activeMenu', activeMenu);
+        }
+
+        // Hide content of Kymberly and Coltabaco groups by default
+        $('#kymberly-content, #coltabaco-content').hide();
+
+        // Retrieve the active menu from localStorage and show its content
+        var activeMenu = getActiveMenu();
+        if (activeMenu) {
+            toggleGroupContent(activeMenu);
+        }
+
         // Add click event listener to each group
-        $('.side-menu li a').on('click', function () {
+        $('.side-menu li a.colors').on('click', function () {
             var groupId = $(this).data('group-id');
             toggleGroupContent(groupId);
+            setActiveMenu(groupId); // Set the active menu to localStorage
         });
     });
 </script>

@@ -1,5 +1,5 @@
 # routes/profile.py
-from flask import Blueprint, render_template, redirect, url_for, session, request
+from flask import Blueprint, render_template, redirect, url_for, session, request, flash
 from routes.db.db import get_users_collection
 
 profile_bp = Blueprint('profile_bp', __name__)
@@ -27,12 +27,26 @@ def edit_profile():
 
         if user_data:
             # Update user information
-            user_data['name'] = request.form.get('new_name')
-            user_data['lastname'] = request.form.get('new_lastname')
-            user_data['email'] = request.form.get('new_email')
+            new_name = request.form.get('new_name')
+            new_lastname = request.form.get('new_lastname')
+            new_email = request.form.get('new_email')
 
-            # Save the updated user data to the database
-            users_collection.update_one({'username': session['username']}, {'$set': user_data})
+            # Check if the updated information is different from the current information
+            if (new_name != user_data['name'] or
+                new_lastname != user_data['lastname'] or
+                new_email != user_data['email']):
+
+                # Save the updated user data to the database
+                user_data['name'] = new_name
+                user_data['lastname'] = new_lastname
+                user_data['email'] = new_email
+                users_collection.update_one({'username': session['username']}, {'$set': user_data})
+
+                # Flash a success message
+                flash('Perfil actualizado exitosamente!', 'success')
+            else:
+                # Flash an error message
+                flash('No se han realizado cambios en el Perfil', 'danger')
 
     # Redirect to the profile page after updating
     return redirect(url_for('profile_bp.profile'))

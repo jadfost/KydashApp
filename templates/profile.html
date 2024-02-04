@@ -25,6 +25,16 @@
 
         <main>
             <div class="header">
+                <!-- Mensaje de editar perfil -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} flash-message">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                 <div class="left">
                     <h1>Mi Perfil</h1>
                     <ul class="breadcrumb">
@@ -33,10 +43,6 @@
                         <li><a href="#" class="active">Mi Perfil</a></li>
                     </ul>
                 </div>
-                <a href="{{ url_for('auth_bp.logout') }}" class="logout">
-                    <i class='bx bx-exit'></i>
-                    <span>Cerrar Sesion</span>
-                </a>
             </div>
 
             <!-- Insights -->

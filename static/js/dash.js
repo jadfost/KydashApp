@@ -95,3 +95,19 @@ function mesPanalera() {
         document.getElementById("formPanaleroFebrero").style.display = "block";
     }
 }
+
+    // Mensajes -------------------------------------------------------
+
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOMContentLoaded event fired");
+
+    // Encuentra todos los elementos con la clase flash-message
+    var flashMessages = document.querySelectorAll(".flash-message");
+
+    // Itera sobre cada mensaje flash y ocúltalo después de 4 segundos
+    flashMessages.forEach(function (message) {
+        setTimeout(function () {
+            message.style.display = "none";
+        }, 8000); 
+    });
+});

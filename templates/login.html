@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
   </head>
   <body>
-    <!-- Agrega esta sección para mostrar mensajes -->
+    <!-- Mensajes -->
     {% with messages = get_flashed_messages(with_categories = true) %}
       {% if messages %}
         {% for category, message in messages %}

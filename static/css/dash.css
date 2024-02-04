@@ -22,6 +22,37 @@
   font-family: "Poppins", sans-serif;
 }
 
+.alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%; /* Ajusta según sea necesario */
+  max-width: 400px; /* Máximo ancho permitido */
+  z-index: 3000;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.0em; /* Tamaño de fuente ajustable */
+  font-weight: bold; /* Texto en negrita */
+}
+
+/* Estilos para mensajes de éxito */
+.alert-success {
+  color: #ffffff;
+  background-color: #388e3c;
+  border-color: #388e3c;
+}
+
+/* Estilos para mensajes de error */
+.alert-danger {
+  color: #ffffff;
+  background-color: #fbc02d;
+  border-color: #fbc02d;
+}
+
 #loader {
   position: fixed;
   top: 0;
