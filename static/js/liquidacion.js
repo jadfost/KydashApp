@@ -45,8 +45,9 @@ document.getElementById('applyFiltersBtn').addEventListener('click', function ()
     const ano = document.getElementById('anocanal').value;
     const mes = document.getElementById('mescanal').value;
     const canalMedicion = document.getElementById('medicioncanal').value;
+    const ejecutivo = document.getElementById('ejecutivo').value;
 
-    const url = `?ano=${ano}&mes=${mes}&canal_medicion=${canalMedicion}`;
+    const url = `?ano=${ano}&mes=${mes}&canal_medicion=${canalMedicion}&ejecutivo=${ejecutivo}`;
     window.location.href = url;
 });
 

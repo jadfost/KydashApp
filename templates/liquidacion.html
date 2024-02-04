@@ -37,20 +37,6 @@
             <div class="bottom-data">
                 <div class="orders">
                     <div class="header">
-                        <i class='bx bx-receipt'></i>
-                        <h3>Buscar</h3>
-                    </div>
-                    <div class="dropdown">
-                        <form action="#">
-                            <div class="form-search">
-                                <input type="search" placeholder="Buscar...">
-                                <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="orders">
-                    <div class="header">
                         <i class='bx bx-filter'></i>
                         <h3>Filtros</h3>
                     </div>
@@ -75,6 +61,20 @@
                             {% endfor %}
                         </select>
                         <button id="applyFiltersBtn">Filtrar</button>
+                    </div>
+                </div>
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-receipt'></i>
+                        <h3>Buscar</h3>
+                    </div>
+                    <div class="dropdown">
+                        <select name="ejecutivo" id="ejecutivo">
+                            {% for ejecutivo in ejecutivos %}
+                            <option value="{{ ejecutivo }}">{{ ejecutivo }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="search" placeholder="Buscar...">
                     </div>
                 </div>
             </div>

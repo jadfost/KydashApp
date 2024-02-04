@@ -1,7 +1,7 @@
 # routes/dashboard.py
 from flask import Blueprint, render_template, redirect, url_for, session, request
 import locale
-from .db.db import get_tradicional_collection, get_unique_years, get_unique_months, get_unique_medicion_channels
+from .db.db import get_tradicional_collection, get_unique_years, get_unique_months, get_unique_medicion_channels, get_unique_medicion_executive
 
 liquidacion_bp = Blueprint('liquidacion_bp', __name__)
 
@@ -15,11 +15,13 @@ def liquidacion():
         anos = get_unique_years()
         meses = get_unique_months()
         canales_medicion = get_unique_medicion_channels()
+        ejecutivos = get_unique_medicion_executive()
 
         # Obtener los valores de los filtros desde la solicitud del usuario
         ano = request.args.get('ano')
         mes = request.args.get('mes')
         canal_medicion = request.args.get('canal_medicion')
+        ejecutivo = request.args.get('ejecutivo')
 
         # Construir el diccionario de filtros
         filters = {}
@@ -29,6 +31,8 @@ def liquidacion():
             filters['MES'] = mes
         if canal_medicion:
             filters['CANAL MEDICIÓN'] = canal_medicion
+        if ejecutivo:
+            filters['EJECUTIVO'] = ejecutivo
 
         # Filtrar la colección según los criterios
         participantes = tradicional_collection.find(filters, {'_id': 0})
@@ -43,7 +47,7 @@ def liquidacion():
 
         locale.setlocale(locale.LC_ALL, 'es_CO.UTF-8')
         return render_template('liquidacion.html', participantes=participantes,
-                               anos=anos, meses=meses, canales_medicion=canales_medicion,
+                               anos=anos, meses=meses, canales_medicion=canales_medicion, ejecutivos=ejecutivos,
                                total_cuotas=total_cuotas, total_resultados=total_resultados, total_banderines=total_banderines)
 
     return redirect(url_for('auth_bp.login'))

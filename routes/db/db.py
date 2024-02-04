@@ -28,3 +28,8 @@ def get_unique_medicion_channels():
     db = get_db()
     channels = db['tradicional'].distinct('CANAL MEDICIÓN')
     return sorted(channels)
+
+def get_unique_medicion_executive():
+    db = get_db()
+    channels = db['tradicional'].distinct('EJECUTIVO')
+    return sorted(channels)

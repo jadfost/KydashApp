@@ -748,6 +748,18 @@ body {
   margin-right: 15px;
 }
 
+.content main .bottom-data .dropdown input {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  background: var(--grey);
+  border-radius: 36px;
+  /* Make it a circle */
+  outline: none;
+  color: var(--dark);
+  margin-right: 15px;
+}
+
 .content main .bottom-data .dropdown .form-search button {
   height: 36px;
   padding: 0 16px;
