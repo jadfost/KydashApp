@@ -2,9 +2,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link href="{{ url_for('static', filename = 'css/dash.css') }}" rel="stylesheet" />
 </head>
+
 <body>
     <a id="loader">
         <img src="{{ url_for('static', filename='images/zyro-image.png') }}" alt="Descripción de la imagen" />
@@ -15,19 +17,26 @@
 
     <!-- Scripts comunes pueden ir aquí -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        function showLoader() {
+            document.getElementById("loader").style.display = "block";
+        }
+
+        function hideLoader() {
             document.getElementById("loader").style.display = "none";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            hideLoader();
         });
 
-        // Mostrar el loader al iniciar una nueva carga de página
         document.addEventListener("click", function (event) {
             if (event.target.tagName === "A" && event.target.getAttribute("href") === "#") {
-                // Prevent the default behavior only for anchor links with a hash (#)
                 event.preventDefault();
             } else if (event.target.tagName === "A" && event.target.getAttribute("href")) {
-                document.getElementById("loader").style.display = "block";
+                showLoader();
             }
         });
     </script>
 </body>
+
 </html>

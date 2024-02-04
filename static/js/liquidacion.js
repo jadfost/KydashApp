@@ -40,6 +40,8 @@ toggler.addEventListener('change', function () {
 });
 
 document.getElementById('applyFiltersBtn').addEventListener('click', function () {
+    showLoader(); // Show loader when applying filters
+
     const ano = document.getElementById('anocanal').value;
     const mes = document.getElementById('mescanal').value;
     const canalMedicion = document.getElementById('medicioncanal').value;

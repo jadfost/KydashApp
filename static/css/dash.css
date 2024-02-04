@@ -814,8 +814,9 @@ body {
   outline: none;
   border-radius: 36px 36px 36px 36px;
   cursor: pointer;
-  background: #feaf0a;
+  background: linear-gradient(45deg, #6a7ef0, #feaf0a, #7c7ef1, #feaf0a);
   background-size: 400% 400%;
+  animation: ripple 10s linear infinite;
   margin-right: 10px;
   width: 170px;
   text-align: center;
