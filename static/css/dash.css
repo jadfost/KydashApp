@@ -183,7 +183,7 @@ body {
 }
 
 .sidebar .side-menu li .colors {
-  color: #f9bc21;
+  color: var(--warning);
 }
 
 .sidebar .side-menu li.active {
