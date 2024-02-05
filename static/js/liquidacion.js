@@ -128,3 +128,15 @@ document.getElementById('applyFiltersBtn').addEventListener('click', function ()
     window.location.href = url;
 });
 
+/// Limpiar Filtros
+document.getElementById('clearFiltersBtn').addEventListener('click', function () {
+    // Clear the selected options in the dropdowns
+    document.getElementById('anocanal').value = "";
+    document.getElementById('mescanal').value = "";
+    document.getElementById('medicioncanal').value = "";
+    document.getElementById('ejecutivo').value = "";
+
+    // Trigger the click event on applyFiltersBtn to reload the page without filters
+    document.getElementById('applyFiltersBtn').click();
+});
+

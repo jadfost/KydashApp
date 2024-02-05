@@ -58,19 +58,15 @@ def get_months():
 
 @liquidacion_bp.route('/get_channels')
 def get_channels():
-    ano = request.args.get('ano')
-    channels = get_unique_medicion_channels(ano)
+    mes = request.args.get('mes')
+    channels = get_unique_medicion_channels(mes)
     return jsonify(channels)
 
 @liquidacion_bp.route('/get_executives')
 def get_executives():
-    ano = request.args.get('ano')
     canal = request.args.get('canal')
-    print(f"Received request for executives. Year: {ano}, Canal: {canal}")
-
-    # Add debugging information
     try:
-        executives = get_unique_medicion_executive(ano, canal)
+        executives = get_unique_medicion_executive(canal)
         print(f"Executives found: {executives}")
         return jsonify(executives)
     except Exception as e:
