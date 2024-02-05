@@ -505,11 +505,18 @@ body {
   cursor: pointer;
 }
 
+.content main .insights li .profile {
+  flex: 1; /* Ajusta la propiedad flex para que .profile ocupe el espacio disponible */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .content main .insights li .coin {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  margin-right: 20px;
+  object-fit: cover; /* Asegura que la imagen cubra completamente el círculo */
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 

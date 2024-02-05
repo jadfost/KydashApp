@@ -27,13 +27,13 @@
             <div class="header">
                 <!-- Mensaje de editar perfil -->
                 {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                        <div class="alert alert-{{ category }} flash-message">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                    {% endif %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} flash-message">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
                 {% endwith %}
                 <div class="left">
                     <h1>Mi Perfil</h1>
@@ -51,6 +51,8 @@
                     <a class="profile">
                         <img class="coin" src="{{ url_for('static', filename = 'images/profile.jpg') }}">
                     </a>
+                </li>
+                <li>
                     <span class="info">
                         <h3>
                             <p>{{ user.name }} {{ user.lastname }}</p>
@@ -86,6 +88,34 @@
                             <div class="form-search">
                                 <label for="new_email">Nuevo E-Mail:</label>
                                 <input type="email" name="new_email" id="new_email" value="{{ user.email }}">
+
+                                <button class="search-btn" type="submit"><i class='bx bx-save'></i>Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-data">
+                <div class="orders">
+                    <!-- New section for changing password -->
+                    <div class="header">
+                        <i class='bx bx-lock-alt'></i>
+                        <h3>Cambiar Contraseña</h3>
+                        <i class='bx bx-filter'></i>
+                    </div>
+                    <div class="dropdown">
+                        <form method="POST" action="{{ url_for('profile_bp.change_password') }}">
+                            <div class="form-search">
+                                <label for="current_password">Contraseña Actual:</label>
+                                <input type="password" name="current_password" id="current_password" required>
+
+                                <label for="new_password">Nueva Contraseña:</label>
+                                <input type="password" name="new_password" id="new_password" required>
+                            </div>
+
+                            <div class="form-search">
+                                <label for="confirm_password">Confirmar Contraseña:</label>
+                                <input type="password" name="confirm_password" id="confirm_password" required>
 
                                 <button class="search-btn" type="submit"><i class='bx bx-save'></i>Guardar</button>
                             </div>

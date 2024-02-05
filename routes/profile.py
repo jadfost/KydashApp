@@ -1,6 +1,7 @@
 # routes/profile.py
 from flask import Blueprint, render_template, redirect, url_for, session, request, flash
 from routes.db.db import get_users_collection
+from werkzeug.security import generate_password_hash, check_password_hash
 
 profile_bp = Blueprint('profile_bp', __name__)
 
@@ -47,6 +48,39 @@ def edit_profile():
             else:
                 # Flash an error message
                 flash('No se han realizado cambios en el Perfil', 'danger')
+
+    # Redirect to the profile page after updating
+    return redirect(url_for('profile_bp.profile'))
+
+
+@profile_bp.route('/change_password', methods=['POST'])
+def change_password():
+    if 'username' in session:
+        # Fetch user data from the database
+        user_data = users_collection.find_one({'username': session['username']})
+
+        if user_data:
+            # Check if the provided current password matches the stored hashed password
+            current_password = request.form.get('current_password')
+            if check_password_hash(user_data['password'], current_password):
+                # Check if the new password and the confirmation match
+                new_password = request.form.get('new_password')
+                confirm_password = request.form.get('confirm_password')
+
+                if new_password == confirm_password:
+                    # Hash and update the user's password in the database
+                    hashed_password = generate_password_hash(new_password, method='pbkdf2:sha256')
+                    user_data['password'] = hashed_password
+                    users_collection.update_one({'username': session['username']}, {'$set': user_data})
+
+                    # Flash a success message
+                    flash('Contraseña cambiada exitosamente!', 'success')
+                else:
+                    # Flash an error message if the new password and confirmation don't match
+                    flash('Las nuevas contraseñas no coinciden', 'danger')
+            else:
+                # Flash an error message if the current password is incorrect
+                flash('Contraseña actual incorrecta', 'danger')
 
     # Redirect to the profile page after updating
     return redirect(url_for('profile_bp.profile'))
