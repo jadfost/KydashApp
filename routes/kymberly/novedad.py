@@ -70,7 +70,7 @@ def comparar_archivos(archivo_A, archivo_B):
 
 @novedad_bp.route("/")
 def novedades():
-    return render_template("/novedades/novedades.html")
+    return render_template("/kymberly/novedades.html")
 
 
 @novedad_bp.route("/procesar_archivos", methods=["POST"])

@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from routes.novedad import novedad_bp
+from routes.kymberly.novedad import novedad_bp
 from routes.tradicional.diciembre_2023 import novedad_dic2023
 from routes.db.auth import auth_bp
 from routes.dashboard import dashboard_bp
 from routes.profile import profile_bp
-from routes.liquidaciones import liquidacion_bp
+from routes.kymberly.liquidaciones import liquidacion_bp
 from routes.db.session import session_bp 
-from routes.cuotas import cuotas_bp
-from routes.mecanica import mecanica_bp
+from routes.kymberly.cuotas import cuotas_bp
+from routes.kymberly.mecanica import mecanica_bp
 from routes.coltabaco import catalogo_bp
 
 app = Flask(__name__)

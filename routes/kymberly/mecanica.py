@@ -6,5 +6,5 @@ mecanica_bp = Blueprint('mecanica_bp', __name__)
 @mecanica_bp.route('/')
 def mecanica():
     if 'username' in session:
-        return render_template('mecanica.html')
+        return render_template('kymberly/mecanica.html')
     return redirect(url_for('auth_bp.login'))

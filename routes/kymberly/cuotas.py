@@ -6,5 +6,5 @@ cuotas_bp = Blueprint('cuotas_bp', __name__)
 @cuotas_bp.route('/')
 def cuotas():
     if 'username' in session:
-        return render_template('cuotas.html')
+        return render_template('kymberly/cuotas.html')
     return redirect(url_for('auth_bp.login'))

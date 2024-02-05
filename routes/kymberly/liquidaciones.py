@@ -1,7 +1,7 @@
 # routes\liquidaciones.py
 from flask import Blueprint, render_template, redirect, url_for, session, request, jsonify
 import locale
-from .db.db import get_tradicional_collection, get_unique_years, get_unique_months, get_unique_medicion_channels, get_unique_medicion_executive
+from ..db.db import get_tradicional_collection, get_unique_years, get_unique_months, get_unique_medicion_channels, get_unique_medicion_executive
 
 liquidacion_bp = Blueprint('liquidacion_bp', __name__)
 
@@ -59,7 +59,7 @@ def liquidacion():
         total_pages = (total_documents + per_page - 1) // per_page
 
         locale.setlocale(locale.LC_ALL, 'es_CO.UTF-8')
-        return render_template('liquidacion.html', participantes=participantes,
+        return render_template('kymberly/liquidacion.html', participantes=participantes,
                                anos=anos, meses=meses, canales_medicion=canales_medicion,
                                total_cuotas=total_cuotas, total_resultados=total_resultados,
                                total_banderines=total_banderines, page=page, per_page=per_page,
