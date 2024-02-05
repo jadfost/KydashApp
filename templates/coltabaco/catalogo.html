@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{{ url_for('static', filename = 'css/dash.css') }}" rel="stylesheet" />
+    <title>Kydash Co</title>
+    <!-- Agrega el favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ url_for('static', filename = 'images/zyro.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+    {% include 'util/layout.html' %}
+
+    {% block content %}
+
+    {% include 'util/sidebar.html' %}
+    <!-- Main Content -->
+    <div class="content">
+        {% include 'util/nav.html' %}
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>Catalogo</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="{{ url_for('dashboard_bp.dashboard') }}">
+                                Coltabaco
+                            </a></li>
+                        /
+                        <li><a href="{{ url_for('profile_bp.profile') }}" class="active">Mi Catalogo</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="report">
+                    <i class='bx bx-history'></i>
+                    <span>Historial de Catalogo</span>
+                </a>
+            </div>
+        </main>
+    </div>
+    {% endblock %}
+    <script src="{{ url_for('static', filename = 'js/dash.js') }}"></script>
+</body>
+
+</html>

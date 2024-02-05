@@ -80,6 +80,9 @@
         <li {% if request.endpoint == 'mecanica_bp.mecanica' %}class="active"{% endif %}>
             <a href="{{ url_for('mecanica_bp.mecanica') }}"><i class='bx bx-cog'></i>Mecanica</a>
         </li>
+        <li {% if request.endpoint == 'cuotas_bp.cuotas' %}class="active"{% endif %}>
+            <a href="{{ url_for('cuotas_bp.cuotas') }}"><i class='bx bx-chart'></i>Cuotas Prediccion</a>
+        </li>
     </ul>
     <ul class="side-menu">
         <li>
@@ -87,8 +90,8 @@
         </li>
     </ul>
     <ul class="side-menu group-content" id="coltabaco-content">
-        <li {% if request.endpoint == 'cuotas_bp.cuotas' %}class="active"{% endif %}>
-            <a href="{{ url_for('cuotas_bp.cuotas') }}"><i class='bx bx-chart'></i>Cuotas Prediccion</a>
+        <li {% if request.endpoint == 'catalogo_bp.catalogo' %}class="active"{% endif %}>
+            <a href="{{ url_for('catalogo_bp.catalogo') }}"><i class='bx bx-cabinet'></i>Catalogo</a>
         </li>
     </ul>
     <ul class="side-menu">
