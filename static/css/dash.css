@@ -611,6 +611,44 @@ body {
   flex-basis: 500px;
 }
 
+/* Pagination Styles */
+.content main .bottom-data .orders .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.content main .bottom-data .orders .pagination ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.content main .bottom-data .orders .pagination li {
+  margin: 0 5px;
+}
+
+.content main .bottom-data .orders .pagination a {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 36px;
+  background: var(--primary);
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  text-decoration: none;  /* Agregado para quitar el subrayado en los enlaces */
+}
+
+.content main .bottom-data .orders .pagination a.active {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+}
+
 .content main .bottom-data button {
   width: 80px;
   height: 100%;

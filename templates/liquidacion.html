@@ -142,6 +142,18 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    <div class="pagination">
+                        {% if total_pages > 1 %}
+                            <ul>
+                                {% if page > 1 %}
+                                    <li><a href="{{ url_for('liquidacion_bp.liquidacion', page=page-1) }}">Anterior</a></li>
+                                {% endif %}
+                                {% if page < total_pages %}
+                                    <li><a href="{{ url_for('liquidacion_bp.liquidacion', page=page+1) }}">Siguiente</a></li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </main>

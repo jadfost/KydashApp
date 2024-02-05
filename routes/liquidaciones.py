@@ -31,10 +31,19 @@ def liquidacion():
             filters['CANAL MEDICIÓN'] = canal_medicion
         if ejecutivo:
             filters['EJECUTIVO'] = ejecutivo
+            
+        # Set the limit for each page (adjust as needed)
+        per_page = 10
 
-        # Filtrar la colección según los criterios
-        participantes = tradicional_collection.find(filters, {'_id': 0})
+        # Get the current page number from the query parameters
+        page = request.args.get('page', 1, type=int)
 
+        # Calculate the number of documents to skip based on the page number
+        skip = (page - 1) * per_page
+
+        # Sort the participants by 'TOTAL BANDERINES' in descending order
+        participantes = tradicional_collection.find(filters, {'_id': 0}).sort('TOTAL BANDERINES', -1).skip(skip).limit(per_page)
+        
         # Convierte los resultados de MongoDB a una lista de diccionarios
         participantes = list(participantes)
 
@@ -43,10 +52,18 @@ def liquidacion():
         total_resultados = sum(participante.get('RESULTADOS VENTA TOTAL', 0) for participante in participantes)
         total_banderines = sum(participante.get('TOTAL BANDERINES', 0) for participante in participantes)
 
+        # Get the total number of documents without pagination
+        total_documents = tradicional_collection.count_documents(filters)
+
+        # Calculate the total number of pages
+        total_pages = (total_documents + per_page - 1) // per_page
+
         locale.setlocale(locale.LC_ALL, 'es_CO.UTF-8')
         return render_template('liquidacion.html', participantes=participantes,
                                anos=anos, meses=meses, canales_medicion=canales_medicion,
-                               total_cuotas=total_cuotas, total_resultados=total_resultados, total_banderines=total_banderines)
+                               total_cuotas=total_cuotas, total_resultados=total_resultados,
+                               total_banderines=total_banderines, page=page, per_page=per_page,
+                               total_pages=total_pages)
 
     return redirect(url_for('auth_bp.login'))
 
