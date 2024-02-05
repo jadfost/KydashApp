@@ -1,10 +1,9 @@
-# routes/dashboard.py
-from flask import Blueprint, render_template, redirect, url_for, session, request
+# routes\liquidaciones.py
+from flask import Blueprint, render_template, redirect, url_for, session, request, jsonify
 import locale
 from .db.db import get_tradicional_collection, get_unique_years, get_unique_months, get_unique_medicion_channels, get_unique_medicion_executive
 
 liquidacion_bp = Blueprint('liquidacion_bp', __name__)
-
 
 @liquidacion_bp.route('/')
 def liquidacion():
@@ -15,8 +14,7 @@ def liquidacion():
         anos = get_unique_years()
         meses = get_unique_months()
         canales_medicion = get_unique_medicion_channels()
-        ejecutivos = get_unique_medicion_executive()
-
+        
         # Obtener los valores de los filtros desde la solicitud del usuario
         ano = request.args.get('ano')
         mes = request.args.get('mes')
@@ -47,8 +45,36 @@ def liquidacion():
 
         locale.setlocale(locale.LC_ALL, 'es_CO.UTF-8')
         return render_template('liquidacion.html', participantes=participantes,
-                               anos=anos, meses=meses, canales_medicion=canales_medicion, ejecutivos=ejecutivos,
+                               anos=anos, meses=meses, canales_medicion=canales_medicion,
                                total_cuotas=total_cuotas, total_resultados=total_resultados, total_banderines=total_banderines)
 
     return redirect(url_for('auth_bp.login'))
+
+@liquidacion_bp.route('/get_months')
+def get_months():
+    ano = request.args.get('ano')
+    meses = get_unique_months(ano)
+    return jsonify(meses)
+
+@liquidacion_bp.route('/get_channels')
+def get_channels():
+    ano = request.args.get('ano')
+    channels = get_unique_medicion_channels(ano)
+    return jsonify(channels)
+
+@liquidacion_bp.route('/get_executives')
+def get_executives():
+    ano = request.args.get('ano')
+    canal = request.args.get('canal')
+    print(f"Received request for executives. Year: {ano}, Canal: {canal}")
+
+    # Add debugging information
+    try:
+        executives = get_unique_medicion_executive(ano, canal)
+        print(f"Executives found: {executives}")
+        return jsonify(executives)
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": str(e)})
+
 

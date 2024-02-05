@@ -29,7 +29,8 @@ def get_unique_medicion_channels():
     channels = db['tradicional'].distinct('CANAL MEDICIÓN')
     return sorted(channels)
 
-def get_unique_medicion_executive():
+def get_unique_medicion_executive(ano, canal):
     db = get_db()
-    channels = db['tradicional'].distinct('EJECUTIVO')
-    return sorted(channels)
+    query = {'CANAL MEDICIÓN': canal}
+    executives = db['tradicional'].find(query).distinct('EJECUTIVO')
+    return sorted(executives)
