@@ -34,3 +34,25 @@ document.addEventListener("DOMContentLoaded", function() {
     window.location.href = 'https://github.com/jadfost';
     });
 });
+
+const loginPasswordInput = document.getElementById('loginPassword');
+const registerPasswordInput = document.getElementById('registerPassword');
+const loginPasswordToggle = document.getElementById('loginPasswordToggle');
+const registerPasswordToggle = document.getElementById('registerPasswordToggle');
+
+function togglePasswordVisibility(input, toggleBtn) {
+    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+    input.setAttribute('type', type);
+    toggleBtn.innerHTML = type === 'password' ? '<i class="bx bx-show"></i>' : '<i class="bx bx-hide"></i>';
+}
+
+loginPasswordToggle.addEventListener('mousedown', (event) => {
+    event.preventDefault();
+    togglePasswordVisibility(loginPasswordInput, loginPasswordToggle);
+});
+
+registerPasswordToggle.addEventListener('mousedown', (event) => {
+    event.preventDefault();
+    togglePasswordVisibility(registerPasswordInput, registerPasswordToggle);
+});
+

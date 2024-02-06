@@ -191,13 +191,51 @@ body.active
     border: 1px solid #333;
 }
 
-.formBx .form form input[type="submit"]
-{
+.formBx .form form .password-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%; /* Asegura que el contenedor tenga el mismo ancho que el input */
+}
+
+.password-toggle-btn {
+    cursor: pointer;
+    font-size: 20px;
+    color: #555;
+    position: absolute;
+    right: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle-btn i {
+    margin: 0 5px;
+}
+
+.password-toggle-btn i.far {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400;
+}
+
+.formBx .form form input[type="password"] {
+    width: calc(100% - 40px);
+    margin-bottom: 20px;
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    border: 1px solid #333;
+}
+
+.formBx .form form input[type="submit"] {
     background: #03a9f4;
     border: none;
     color: #fff;
-    max-width: 100px;
     cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
 }
 
 .formBx.active .signupForm input[type="submit"]
