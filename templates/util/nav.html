@@ -11,4 +11,7 @@
     <a href="{{ url_for('profile_bp.profile') }}" class="profile">
         <img src="{{ url_for('static', filename = 'images/profile.jpg') }}" alt="Descripción de la imagen" />
     </a>
+    <a href="{{ url_for('auth_bp.logout') }}" class="logout">
+        <i class='bx bx-log-out-circle'></i>
+    </a>
 </nav>

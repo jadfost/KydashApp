@@ -183,7 +183,7 @@ body {
 }
 
 .sidebar .side-menu li .colors {
-  color: var(--warning);
+  color:#ff8901;
 }
 
 .sidebar .side-menu li.active {
@@ -246,7 +246,7 @@ body {
 }
 
 .sidebar .side-menu li a.logout {
-  color: var(--danger);
+  color: #df5516;
 }
 
 .sidebar .side-menu li a.copyrigh {
@@ -380,6 +380,19 @@ body {
 
 .content nav .profile img:hover {
   animation: swirl 1s linear infinite;
+}
+
+.content nav .logout i{
+  color: #df5516;
+  font-size: 2.2em;;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+}
+
+.content nav .logout i:hover {
+  color: #ffffff;
+  background-color: #df5516;
 }
 
 .content nav .theme-toggle {
