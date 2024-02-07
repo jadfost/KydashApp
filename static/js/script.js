@@ -37,8 +37,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const loginPasswordInput = document.getElementById('loginPassword');
 const registerPasswordInput = document.getElementById('registerPassword');
+const adminPasswordInput = document.getElementById('adminPassword');
 const loginPasswordToggle = document.getElementById('loginPasswordToggle');
 const registerPasswordToggle = document.getElementById('registerPasswordToggle');
+const adminPasswordToggle = document.getElementById('adminPasswordToggle');
 
 function togglePasswordVisibility(input, toggleBtn) {
     const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -55,4 +57,10 @@ registerPasswordToggle.addEventListener('mousedown', (event) => {
     event.preventDefault();
     togglePasswordVisibility(registerPasswordInput, registerPasswordToggle);
 });
+
+adminPasswordToggle.addEventListener('mousedown', (event) => {
+    event.preventDefault();
+    togglePasswordVisibility(adminPasswordInput, adminPasswordToggle);
+});
+
 

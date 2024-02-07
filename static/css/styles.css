@@ -166,86 +166,160 @@ body.active
     transition-delay: 0.25s;
 }
 
-.formBx .form form
-{
+.formBx .form form {
     width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
-.formBx .form form h3
-{
+.formBx .form form h3 {
     font-size: 1.5em;
     color: #333;
     margin-bottom: 20px;
     font-weight: 500;
 }
 
-.formBx .form form input
-{
+.formBx .form form .password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.formBx .form form input {
     width: 100%;
     margin-bottom: 20px;
     padding: 10px;
     outline: none;
     font-size: 16px;
     border: 1px solid #333;
-}
-
-.formBx .form form .password-container {
-    display: flex;
-    align-items: center;
     position: relative;
-    width: 100%; /* Asegura que el contenedor tenga el mismo ancho que el input */
 }
 
-.password-toggle-btn {
+.formBx .form form #loginPasswordToggle {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 25px;
     color: #555;
     position: absolute;
     right: 10px;
-    height: 100%;
     display: flex;
     align-items: center;
 }
 
-.password-toggle-btn i {
-    margin: 0 5px;
+.formBx .form form #loginPasswordToggle i {
+    margin-right: 5px;
+    margin-bottom: 17px;
 }
 
-.password-toggle-btn i.far {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 400;
+.formBx .form form #loginPasswordToggle i:hover {
+    color: #03a9f4;
 }
 
-.formBx .form form input[type="password"] {
-    width: calc(100% - 40px);
-    margin-bottom: 20px;
-    padding: 10px;
-    outline: none;
-    font-size: 16px;
-    border: 1px solid #333;
+.formBx .form form #registerPasswordToggle {
+    cursor: pointer;
+    font-size: 25px;
+    color: #555;
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.formBx .form form #registerPasswordToggle i {
+    margin-right: 5px;
+    margin-bottom: 17px;
+}
+
+.formBx .form form #registerPasswordToggle i:hover {
+    color: #03a9f4;
+}
+
+.formBx .form form #adminPasswordToggle {
+    cursor: pointer;
+    font-size: 25px;
+    color: #555;
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.formBx .form form #adminPasswordToggle i {
+    margin-right: 5px;
+    margin-bottom: 17px;
+}
+
+.formBx .form form #adminPasswordToggle i:hover {
+    color: #03a9f4;
+}
+
+/* Ajustar ícono de ocultar contraseña cuando se oculta */
+.formBx .form form input[type="password"].hide-password {
+    background-image: url('path/to/icon-hide.png');
+}
+
+@keyframes ripple {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .formBx .form form input[type="submit"] {
-    background: #03a9f4;
-    border: none;
-    color: #fff;
+    border-radius: 36px;
     cursor: pointer;
+    background: linear-gradient(45deg, #1976d2, #feaf0a, #1976d2, #feaf0a);
+    background-size: 400% 400%;
+    animation: ripple 10s linear infinite;
+    color: #fff;
     width: 100%;
     padding: 10px;
     margin-top: 10px;
     box-sizing: border-box;
+    border: none;
+    outline: none;
+    transition: background 0.5s ease;
 }
 
 .formBx.active .signupForm input[type="submit"]
 {
-    background: #feaf0a;
+    border-radius: 36px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #feaf0a, #1976d2, #feaf0a, #1976d2);
+    background-size: 400% 400%;
+    animation: ripple 10s linear infinite;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    transition: background 0.5s ease;
 }
 
 .formBx .form form .forgot
 {
     color: #333;
+}
+
+@keyframes scaleImage {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/* Aplica la animación solo cuando el mouse está sobre la imagen */
+.container img:hover {
+    animation: scaleImage 0.2s ease-in-out;
 }
 
 @media (max-width:991px)

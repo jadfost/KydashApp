@@ -37,12 +37,11 @@
             <img src="{{ url_for('static', filename = 'images/image.png') }}" alt="Descripción de la imagen" />
             <h3>Iniciar Sesion</h3>
             <input type="text" name="username" placeholder="Usuario" required />
-            <div class="password-container">
-              <input type="password" name="password" id="loginPassword" placeholder="Contraseña" required/>
-              <span class="password-toggle-btn" id="loginPasswordToggle">
-                <i class='bx bx-show'></i>
-                <i class='bx bx-hide'></i>
-              </span>            
+            <div class="password-input-container">
+              <input type="password" name="password" id="loginPassword" placeholder="Contraseña" required />
+              <span id="loginPasswordToggle">
+                  <i class='bx bx-show'></i>
+              </span>
             </div>
             <input type="submit" value="Acceder" />
           </form>
@@ -54,14 +53,18 @@
             <img src="{{ url_for('static', filename='images/image.png') }}" alt="Descripción de la imagen" />
             <h3>Registrarse</h3>
             <input type="text" name="username" placeholder="Usuario" required />
-            <div class="password-container">
+            <div class="password-input-container">
               <input type="password" name="password" id="registerPassword" placeholder="Contraseña" required/>
-              <span class="password-toggle-btn" id="registerPasswordToggle">
+              <span id="registerPasswordToggle">
                 <i class='bx bx-show'></i>
-                <i class='bx bx-hide'></i>
               </span>            
             </div>
-            <input type="password" name="admin_code" placeholder="Código Admin" required />
+            <div class="password-input-container">
+              <input type="password" name="admin_code" id="adminPassword" placeholder="MasterKey" required />
+              <span id="adminPasswordToggle">
+                <i class='bx bx-show'></i>
+              </span>            
+            </div>
             <input type="submit" value="Crear" />
           </form>        
           <h3 id="jadfost2">© JadFost</h3>
