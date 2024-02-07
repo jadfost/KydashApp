@@ -246,7 +246,7 @@ body {
 }
 
 .sidebar .side-menu li a.logout {
-  color: #df5516;
+  color: #ff8901;
 }
 
 .sidebar .side-menu li a.copyrigh {
@@ -382,17 +382,17 @@ body {
   animation: swirl 1s linear infinite;
 }
 
-.content nav .logout i{
-  color: #df5516;
-  font-size: 2.2em;;
+.content nav .logout i {
+  color: var(--primary);
+  font-size: 2.0em;
   object-fit: cover;
   border-radius: 50%;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, color 0.5s ease;
 }
 
 .content nav .logout i:hover {
-  color: #ffffff;
-  background-color: #df5516;
+  color: #ff8901;
+  transform: scale(1.0); /* Puedes ajustar este valor según tus preferencias */
 }
 
 .content nav .theme-toggle {
@@ -479,20 +479,9 @@ body {
   height: 36px;
   padding: 0 16px;
   border-radius: 36px;
-  background: #f9bc21;
-  color: var(--light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-gap: 10px;
-  font-weight: 500;
-}
-
-.content main .header .logout:hover {
-  height: 36px;
-  padding: 0 16px;
-  border-radius: 36px;
-  background: #ffca46;
+  background: linear-gradient(45deg, #ff8901, #f5bb3f, #ff8901, #f5bb3f);
+  background-size: 400% 400%;
+  animation: ripple 10s linear infinite;
   color: var(--light);
   display: flex;
   align-items: center;
